@@ -19,6 +19,7 @@ deterministic GRU baseline under **partial observability** and **hidden degradat
 |---|---|
 | 可用动态数据源 | ✅ 已确定：NASA **AGTF30e** |
 | 数据生成 | ✅ 30 条轨迹（5 种 PLA 激励 × 6 种工况）|
+| 端到端预测 | ✅ 已验证（6.7 s 历史 → 40 s 推算，误差 1.7–2.8%）|
 | GRU 基线 | ✅ 容量消融完成（hidden 96/128/192 × 3 种子）|
 | RSSM | ⚠ 已训练，但 **KL 项卡死**（未修复）|
 | PC-LWM（物理约束）| ❌ `physics.py` 存在但**未接入训练** |
@@ -108,7 +109,7 @@ python scripts/plot_capacity.py      # 出图
 │   ├── long_eval_fixed.json
 │   ├── capacity_ablation/results.json
 │   └── verify_unified.json
-├── figures/                        # 关键图
+├── figures/                        # 关键图（含 fig40 预测演示）
 ├── model_gen/                      # MATLAB 数据生成脚本（需 AGTF30e）
 └── docs/                           # 详细文档
     ├── START_HERE.md               # 交接入口
@@ -176,6 +177,30 @@ snapshot_download(
 | **GRU (hidden=128)** | 770,320 | **0.0123** |
 | GRU (hidden=192) | 960,400 | 0.0144 |
 | RSSM | 3,243,280 | 0.0328 |
+
+### 5.1.5 端到端预测演示
+
+给定 6.7 s 历史 + 未来燃油指令，自主推算 40 s（不使用未来传感器值）：
+
+| 轨迹 | 激励 | GRU-h128 | RSSM |
+|---|---|---|---|
+| `d01_step80_a00000` | step80 | **0.0168** | 0.0476 |
+| `d02_step80_a00000_m06` | step80 | **0.0167** | 0.0419 |
+| `d07_step55_a00000` | step55 | **0.0281** | 0.0461 |
+
+关键物理量（`d01`，真值 → GRU 预测）：
+
+- 涡轮前温度：1858.9 → 3169.1 °R（**1864.6 → 3166.6**）
+- 压气机出口压力：141.3 → 586.2 psia（**141.9 → 587.4**）
+- 总压比 OPR：9.6 → 40（准确追踪）
+
+```bash
+python scripts/demo_predict.py && python scripts/plot_demo.py
+```
+
+![预测演示](figures/fig40_prediction_demo.png)
+
+详见 [`docs/PREDICTION_DEMO.md`](docs/PREDICTION_DEMO.md)。
 
 ### 5.2 长时自由递推（384 步 = 40 s，**已修正动作时序**）
 
@@ -268,4 +293,5 @@ T-MATS:
 ---
 
 **最后更新**：2026-11-03
+
 
