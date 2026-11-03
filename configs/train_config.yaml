@@ -1,0 +1,56 @@
+﻿# 训练配置快照（从 scripts/train_v2.py 顶部常量整理）
+# 生成于 2026-11-02
+
+data:
+  source: data/prepared/data.npz
+  splits: data/prepared/splits.json
+  n_traj: {train: 15, val: 5, test: 10}
+  obs_channels: 16
+  act_channels: 1
+  act_source: Wfact_lb_s  # 实际燃油，非指令
+
+preprocess:
+  downsample_step: 7        # 0.015s -> 0.105s
+  window: 64                # 6.72 s 历史
+  horizon: 32               # 3.36 s 预测
+  stride_train: 4
+  stride_eval: 8
+  normalize_fit_on: train_only
+  normalize_saved: false    # ⚠ 未持久化
+
+gru:
+  hidden: 192
+  mlp_units: 512
+  mlp_layers: 2
+  params: 960400
+  optimizer: Adam(lr=1e-3, weight_decay=1e-4)
+  scheduler: CosineAnnealingLR(T_max=120)
+  batch_size: 64
+  max_epochs: 120
+  early_stop_patience: 40
+
+rssm:
+  stoch: 32
+  classes: 32
+  deter: 256
+  hidden: 256
+  params: 3243280
+  kl_scale: 0.3             # v1 是 1.0
+  optimizer: Adam(lr=4e-4, weight_decay=1e-5)
+  scheduler: CosineAnnealingLR(T_max=120)
+  batch_size: 32
+  max_epochs: 120
+  early_stop_patience: 40
+
+eval:
+  metric: relative_RMSE_in_normalized_space
+  channels_excluded:
+    - S4_FAR    # std 极小(0.0056)，相对误差放大 40x
+    - S0_Tt     # 轨迹内 std=0
+    - S0_Pt     # 同上
+    - S2_Tt     # 慢车点几乎不变
+    - S2_Pt     # 同上
+  channels_evaluated: 11
+
+seed: 0
+device: cuda

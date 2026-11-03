@@ -1,0 +1,33 @@
+# PC-LWM 超算环境依赖
+#
+# 版本依据：本机验证通过的 venv（D:\涡轴WM\workspace\.venv）
+#   python 3.13.5 / torch 2.9.1+cu128 / numpy 2.5.4 / scipy 1.18.1
+#   pandas 3.1.0 / pyyaml 6.0.3
+#
+# ⚠ 集群上的 Python 版本很可能不是 3.13（常见 3.9–3.11）。
+#   requirement 里的版本号是「本机验证过的版本」，集群上不一定能装。
+#   建议：
+#     1. 若集群有 conda → 用 environment.yml（见文件末尾注释）
+#     2. 若只有 module → 用集群提供的 python + pip install 时放宽版本限制
+#     3. torch 的 CUDA 版本必须匹配集群驱动（见 README_HPC.md §3）
+#
+# 最保守的写法（不锁死 patch 版本，只锁主版本）：
+#   torch>=2.4
+#   numpy>=1.24
+#
+# 下面按「本机精确版本」列出，供对照；实际提交时建议改用宽松约束。
+
+# ---- 核心 ----
+torch==2.9.1
+numpy==2.5.4
+scipy==1.18.1
+pandas==3.1.0
+PyYAML==6.0.3
+
+# ---- 可选（训练监控用，集群上通常已有）----
+# tensorboard==2.21.0
+# tqdm==4.70.1
+
+# ---- 不需要 ----
+# 本课题不依赖：jax / ninjax / optax / gym / mujoco / dm_control
+# （官方 dreamerv3 用 JAX，我们用的是 PyTorch 移植版，见 vendor/dreamerv3-torch）

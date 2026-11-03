@@ -1,0 +1,92 @@
+﻿# .gitignore — PC-LWM
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# ---------- MATLAB / Simulink ----------
+*.slxc
+slprj/
+*.mexa64
+*.mexw64
+*.mexmaci64
+*.asv
+*.autosave
+
+# ---------- 大文件（不入库，见 README）----------
+# 原始 Simulink 仿真数据（数 GB）
+data/raw/
+data/raw_all/
+data/raw_degradation/
+data/raw_m4w/
+data/raw_m4w_v2/
+data/work/
+data/processed/
+data/processed_trim/
+data/merged/
+data/cmapss/
+
+# 单文件 >50MB 的 CSV
+data/*.csv
+*.mat
+!data/agtf30_traj/d01_step80_a00000_m00_g010/*.csv
+!data/agtf30_traj/d12_step55_a30000_m05_g010/*.csv
+!data/agtf30_traj/d17_step95_a20000_m03_g005/*.csv
+!data/agtf30_traj/d19_ramp_a00000_m00_g010/*.csv
+!data/agtf30_traj/d25_multi_a00000_m00_g010/*.csv
+
+# 完整轨迹 CSV（只保留 5 条样本，其余见 .gitattributes/LFS 说明）
+# 若要完整数据，请解压发布包
+data/agtf30_traj/d03_*/
+data/agtf30_traj/d04_*/
+data/agtf30_traj/d05_*/
+data/agtf30_traj/d06_*/
+data/agtf30_traj/d07_*/
+data/agtf30_traj/d08_*/
+data/agtf30_traj/d09_*/
+data/agtf30_traj/d10_*/
+data/agtf30_traj/d11_*/
+data/agtf30_traj/d12_*/
+data/agtf30_traj/d13_*/
+data/agtf30_traj/d14_*/
+data/agtf30_traj/d15_*/
+data/agtf30_traj/d16_*/
+data/agtf30_traj/d18_*/
+data/agtf30_traj/d20_*/
+data/agtf30_traj/d21_*/
+data/agtf30_traj/d22_*/
+data/agtf30_traj/d23_*/
+data/agtf30_traj/d24_*/
+data/agtf30_traj/d26_*/
+data/agtf30_traj/d27_*/
+data/agtf30_traj/d28_*/
+data/agtf30_traj/d29_*/
+data/agtf30_traj/d30_*/
+
+# ---------- Office / PDF 临时文件 ----------
+~$*.docx
+~$*.xlsx
+~$*.pptx
+*.tmp
+
+# ---------- OS ----------
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ---------- 编辑器 ----------
+.vscode/
+.idea/
+*.swp
+
