@@ -13,6 +13,50 @@ deterministic GRU baseline under **partial observability** and **hidden degradat
 
 ---
 
+## 最新进展（2026-11-03）
+
+> 详见 [docs/WORKLOG_20261103.md](docs/WORKLOG_20261103.md) 与 [docs/DIAGNOSIS_REPORT.md](docs/DIAGNOSIS_REPORT.md)
+
+### 数据集：A/B/C 三组 26 条轨迹
+
+| 组 | 条数 | 覆盖 | 用途 |
+|---|---|---|---|
+| **A** | 12 | ΔPLA 25–38 deg，环境固定 | 单输入动态辨识 |
+| **B** | 6 | ΔAlt 0–25 kft，ΔMN 0–0.75 | 环境独立影响 |
+| **C** | 8 | 三输入异步 | 多输入耦合 |
+
+每条 39 列 × 8001 行，含 **外部输入（PLA/Alt/MN）+ 转子状态（N2int/N2dot/N3dot）+ 燃油指令与实际值**。
+旧数据的这两个维度完全缺失。
+
+**数据划分**（按完整轨迹，无窗口泄漏）：train 17 / val 4 / test_id 2 / test_ood 3
+
+### 基线结果（WINDOW=32，历史 3.36 s，HORIZON=32）
+
+| 模型 | 参数 | test_id | test_ood | 长时 60 s |
+|---|---|---|---|---|
+| ARX(na2,nb1) | **70** | 0.1332 | 0.1007 | 0.2191 |
+| GRU-h128 | 301 K | **0.0766** | **0.0650** | 0.0545 |
+| RSSM-d128 (gumbel, 5 seeds) | 940 K | 0.0808 ± 0.0016 | 0.0695 ± 0.0006 | 0.0793 |
+| RSSM-d128 (argmax) | 940 K | 1.3027 | 0.9832 | 2.2068 |
+
+### RSSM 根因诊断：训练/推理采样不一致
+
+`RSSM.imagine` 中的 `"gumbel" if self.training else "argmax"` 导致：
+
+- 训练用 Gumbel 采样，推理用 Argmax
+- 先验分布接近均匀（熵 3.333 vs 均匀 3.466，top1−top2 差仅 0.047）
+- **train/eval 输出差 159%**，argmax 输出幅值是 gumbel 的 2 倍
+- 修复后 test_id 从 **1.3027 → 0.0808**（17 倍 → 1.05 倍）
+
+**同时发现**：`free_bits=1.0` 过高，32 个潜维度 KL 全部低于阈值（0% 超阈值），KL 项梯度为零。
+
+![baseline](experiments/figures/baseline_fixed_compare.png)
+
+### 待办
+
+1. 重训 RSSM，`free_bits` 1.0 → 0.2
+2. 统一推理策略（gumbel 最优，但需确定性时用 prob）
+3. 修复后重新评估是否值得做双时间尺度 / 物理约束
 ## 1. 项目状态（2026-11-03）
 
 | 阶段 | 状态 |
@@ -293,5 +337,7 @@ T-MATS:
 ---
 
 **最后更新**：2026-11-03
+
+
 
 

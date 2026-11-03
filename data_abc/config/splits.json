@@ -1,0 +1,61 @@
+{
+ "splits": {
+  "train": [
+   "A1_step_e1",
+   "A2_aprbs_e1",
+   "A3_msin_e1",
+   "A4_ramp_e1",
+   "A5_step_e2",
+   "A6_aprbs_e2",
+   "A7_msin_e2",
+   "A8_ramp_e2",
+   "B1_alt_slow",
+   "B2_alt_fast",
+   "B3_mn_slow",
+   "B4_mn_fast",
+   "B5_flight_climb",
+   "C1_seq_pla_first",
+   "C2_seq_env_first",
+   "C3_opposite",
+   "C4_alternate"
+  ],
+  "val": [
+   "A9_step_e3",
+   "A10_aprbs_e3",
+   "B6_flight_desc",
+   "C5_partial_overlap"
+  ],
+  "test_id": [
+   "A11_msin_e3",
+   "C6_mn_step"
+  ],
+  "test_ood": [
+   "A12_ramp_e3",
+   "C7_threeway",
+   "C8_multiphase"
+  ]
+ },
+ "step": 7,
+ "dt": 0.105,
+ "fs": 9.523809523809524,
+ "obs_cols": [
+  "Wfact_lb_s",
+  "N2int",
+  "S4_Tt",
+  "S45_Tt",
+  "S36_Pt"
+ ],
+ "act_cols": [
+  "PLA_deg",
+  "Alt_ft",
+  "MN"
+ ],
+ "aux_cols": [
+  "N2dot",
+  "N3dot",
+  "Wfdmd_lb_s",
+  "S36_Tt",
+  "S5_Tt",
+  "S0_W"
+ ]
+}

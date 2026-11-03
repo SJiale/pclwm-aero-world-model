@@ -1,0 +1,14 @@
+{
+ "prior_entropy_mean": 3.3327534571290016,
+ "ln32": 3.4657359027997265,
+ "prior_maxp_mean": 0.10418315924471244,
+ "top1_top2_gap": 0.04729047744331183,
+ "train_eval_diff": {
+  "mean_abs_diff": 0.6777772307395935,
+  "max_abs_diff": 1.9375964403152466,
+  "rel": 1.5932217836380005,
+  "train_out_scale": 0.42541298270225525
+ },
+ "root_cause": "train/inference sampling mismatch (gumbel vs argmax)",
+ "code_location": "rssm_impl.py RSSM._sample / imagine mode default"
+}
