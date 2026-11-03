@@ -1,4 +1,4 @@
-# DATASET_CARD — AGTF30e 动态数据集
+﻿# DATASET_CARD — AGTF30e 动态数据集
 
 > 本文件描述**实际用于训练**的数据集。所有数值均从数据文件与日志核对得出。
 > 生成日期：2026-11-02
@@ -248,6 +248,10 @@ o_sd = tr_obs.std(0)+1e-8  # (16,)
 
 ## 9. 复现数据所需的源文件
 
+> 📦 **完整原始数据已发布到 HuggingFace**：https://huggingface.co/datasets/leran0326/pclwm-agtf30e-dynamic
+>
+> 包含全部 30 条轨迹 CSV（142 MB），以及 data.npz、splits.json、meta.json。
+
 **必需（未打包，需从原机获取）**：
 
 | 文件 | 路径 | 大小 | 用途 |
@@ -275,3 +279,4 @@ o_sd = tr_obs.std(0)+1e-8  # (16,)
 
 **v1 与 v2 的差异**：轨迹数 10→30，horizon 16→32，GRU hidden 256→192。
 **两者不可直接比较** —— 见 `HANDOFF_REPORT.md` §2.5 的统一核验表。
+

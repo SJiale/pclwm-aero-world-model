@@ -1,4 +1,9 @@
-# PC-LWM：面向部分可观测航空发动机的物理约束潜在世界模型
+﻿# PC-LWM：面向部分可观测航空发动机的物理约束潜在世界模型
+
+[![GitHub](https://img.shields.io/badge/GitHub-pclwm--aero--world--model-blue)](https://github.com/SJiale/pclwm-aero-world-model)
+[![HuggingFace Dataset](https://img.shields.io/badge/🤗%20Dataset-pclwm--agtf30e--dynamic-yellow)](https://huggingface.co/datasets/leran0326/pclwm-agtf30e-dynamic)
+[![Python](https://img.shields.io/badge/python-3.13-green)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.9.1%2Bcu128-red)](https://pytorch.org/)
 
 > **Physics-Constrained Latent World Model (PC-LWM) for Partially Observable Aero-Engines**
 
@@ -138,8 +143,23 @@ python scripts/plot_capacity.py      # 出图
 
 **动作**：燃油流量（`Wfact_lb_s`，实际值，非指令）
 
-⚠ **完整数据未全部入库**（95 MB CSV）。本仓库含 `data.npz`（已含全部训练张量）+ 5 条样本 CSV。
-完整 30 条 CSV 需从原机获取或自行生成（见 `model_gen/`）。
+### 数据获取
+
+| 内容 | 位置 |
+|---|---|
+| **完整 30 条轨迹 CSV**（142 MB）| 🤗 [HuggingFace Dataset](https://huggingface.co/datasets/leran0326/pclwm-agtf30e-dynamic) |
+| 训练张量 `data.npz`（6.1 MB）| 本仓库 `data/` |
+| 5 条样本 CSV | 本仓库 `data/agtf30_traj/` |
+
+```python
+# 下载完整数据集
+from huggingface_hub import snapshot_download
+snapshot_download(
+    repo_id="leran0326/pclwm-agtf30e-dynamic",
+    repo_type="dataset",
+    local_dir="./agtf30e_data",
+)
+```
 
 详见 [`docs/DATASET_CARD.md`](docs/DATASET_CARD.md)。
 
@@ -248,3 +268,4 @@ T-MATS:
 ---
 
 **最后更新**：2026-11-03
+
