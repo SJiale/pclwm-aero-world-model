@@ -1,4 +1,4 @@
-﻿# PC-LWM：面向部分可观测航空发动机的物理约束潜在世界模型
+# PC-LWM：面向部分可观测航空发动机的物理约束潜在世界模型
 
 [![GitHub](https://img.shields.io/badge/GitHub-pclwm--aero--world--model-blue)](https://github.com/SJiale/pclwm-aero-world-model)
 [![HuggingFace Dataset](https://img.shields.io/badge/🤗%20Dataset-pclwm--agtf30e--dynamic-yellow)](https://huggingface.co/datasets/leran0326/pclwm-agtf30e-dynamic)
@@ -341,3 +341,32 @@ T-MATS:
 
 
 
+
+---
+
+## 最新进展（2026-11-04 傍晚）：Mask-aware 修复
+
+> 详见 [docs/FIX_REPORT.md](docs/FIX_REPORT.md)
+
+修复两个关键 bug 后，**Mask-RSSM 全面超越 Mask-GRU**：
+
+| 问题 | 后果 |
+|---|---|
+| 重建监督用了遮蔽后的观测 | 模型学成"遮蔽通道输出 0" |
+| 每 32 步才更新一次 | 不是真正的逐步在线估计 |
+
+修复后（T4 永久失效 @20s，test_id）：
+
+| 模型 | 参数 | 重构 RMSE | 单步推理 |
+|---|---|---|---|
+| Mask-GRU | 302 K | 37.31 °R | 0.43 ms |
+| **Mask-RSSM** | 1.20 M | **22.72 °R** | 1.20 ms |
+
+**RSSM 在全部 8 个（场景×划分）组合中胜出，平均领先 36%。**
+
+关键洞察：
+- GRU 隐状态压缩，故障后 T4 信息衰减无法刷新 → 逐步在线更差 27–168%
+- RSSM 随机潜状态 z 与 h 分离，z 可由其他传感器驱动 → 逐步在线更好 22–39%
+- RSSM 对其他传感器的敏感度是 GRU 的 1.2–2.0 倍
+
+![对比](experiments/mask_aware_fixed/figures/before_after_rssm.png)
