@@ -297,3 +297,85 @@ test_id 仅 2 条、test_ood 3 条。所有结论的统计置信度有限。
 - 双时间尺度模型改造（固定 K 已证明无效）
 - 物理约束损失（需先解决 KL 失效）
 - DT + Mask 联合（需先补齐基线）
+---
+
+## 十一、2026-11-05 研究规划更新（不代表训练状态变化）
+
+> 本节为**增量补充**，不改变上述实时运行状态记录。
+
+### 11.1 规划扩展
+
+已将总体研究主线扩展至：
+- 控制导向代理
+- 受约束 MPC
+- 隐藏参数在线适应
+- 可选 Actor–Critic
+
+详见 [PC_LWM_MASTER_ROADMAP.md](PC_LWM_MASTER_ROADMAP.md)、
+[PC_LWM_TASK_PRIORITIES.md](PC_LWM_TASK_PRIORITIES.md)、
+[PC_LWM_CONTROL_MPC_PREP.md](PC_LWM_CONTROL_MPC_PREP.md)、
+[PC_LWM_THESIS_PLAN.md](PC_LWM_THESIS_PLAN.md)。
+
+### 11.2 实验状态（实时核对）
+
+| 项 | 实际状态 |
+|---|---|
+| **E0–E3 五种子训练** | 🔄 **运行中**（seed0 完成，seed1 E1 阶段）|
+| 训练配置/代码 | **保持现状，未修改** |
+| PSVA/PGTT | 代码与设计完成，**未训练** |
+| MPC / Actor-Critic | **未实现** |
+
+### 11.3 本轮完成的工作
+
+| 项 | 说明 |
+|---|---|
+| 规划文档同步 | 4 份 Markdown 已复制到 `docs/` |
+| PSVA 归档 | 代码 + 50 项单元测试通过，方案保留 |
+| ΔNdot 笔误核对 | **确认不是笔误**，E3 确实用 ΔNdot（见 §11.4）|
+| 路线图整合 | `RESEARCH_ROADMAP.md` 新增第十节 |
+
+### 11.4 ⚠️ 技术澄清：E3 与 PSVA 的动态监督目标不同
+
+| 模型 | `PHYS_COLS` | 动态目标 | 代码位置 |
+|---|---|---|---|
+| **PC-RSSM E3** | `["loop_N2dot", "loop_N3dot"]` | **ΔNdot** | `pc_data.py` L27 |
+| **PSVA** | 上述 + `["loop_N2int", "loop_N3int"]` | **ΔN** | `psva_data.py` 的 `y_delta` |
+
+**结论：报告中的 "E3 用 ΔNdot" 是准确的，不是笔误。**
+
+**背景**：PC-RSSM 设计时只有 Ndot 标签（`phys_labels` 导出较晚），PSVA 按 PSG-JEPA 原文（`Δq_{t+i,k}=q_{t+i+k}-q_{t+i}`）改为转速差。
+
+**影响**：
+1. E3 与 PSVA 不能直接比较"动态监督"的效果
+2. PSVA 的真正对照是 **P_ctrl**（不切分 h + 相同 Ndot/N/ΔN 监督）
+3. 若要与 E3 对比，应比较**总体预测性能**，而非特定监督项
+
+### 11.5 PSVA 归档清单
+
+| 文件 | 内容 | 状态 |
+|---|---|---|
+| `pclwm_psva/psva.py` | PSVA_RSSM + PSVA_WorldModel（含 unsplit 对照）| ✅ |
+| `pclwm_psva/psva_data.py` | 数据加载（fast/slow/ΔN）| ✅ |
+| `pclwm_psva/test_psva.py` | 28 项单元测试 | ✅ 全过 |
+| `pclwm_psva/test_ctrl.py` | 22 项 P_ctrl 对照测试 | ✅ 全过 |
+| `pclwm_psva/evaluate_psva.py` | 交叉 Probe + Separation | ✅ 含 E3 参照 |
+| `pclwm_psva/verify_gate.py` | PGTT 门控语义验证 | ✅ |
+| `pclwm_psva/diag_init.py` | 零初始化诊断 | ✅ |
+| `pclwm_psva/diag_lambda.py` | λ 扫参 | ✅ |
+
+**关键数值**：
+- PSVA 参数 1,203,083 vs E3 1,203,209（−0.01%）
+- P_ctrl 参数 1,203,467（+0.03%）
+- E3 任意 64/64 切分 Separation = **+0.0049**（基准线）
+
+### 11.6 待确认的工程前置问题
+
+| 问题 | 影响 | 状态 |
+|---|---|---|
+| 控制层级 S/F | MPC 架构 | 待确认 |
+| 动作注入点 | 与控制接口 | 待确认 |
+| step/reset 接口 | 仿真闭环 | 待确认 |
+| 安全约束 | MPC 约束设计 | 待确认 |
+| 仿真耗时 | 训练数据生成 | 待确认 |
+
+详见 [PC_LWM_CONTROL_MPC_PREP.md](PC_LWM_CONTROL_MPC_PREP.md)。
