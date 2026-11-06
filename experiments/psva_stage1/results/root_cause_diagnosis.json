@@ -1,0 +1,61 @@
+{
+ "test_A_weight_structure": {
+  "cross_over_intra_ratio": 1.006400465965271,
+  "per_gate": {
+   "reset(r)": 1.0154829025268555,
+   "update(z)": 1.021485686302185,
+   "new(n)": 0.9822324514389038
+  }
+ },
+ "test_B_functional_coupling": [
+  {
+   "delta": 0.1,
+   "perturb_fast": {
+    "d_fast": 0.0508689358830452,
+    "d_slow": 0.010385940782725811
+   },
+   "perturb_slow": {
+    "d_fast": 0.00874249916523695,
+    "d_slow": 0.048157699406147
+   }
+  },
+  {
+   "delta": 0.5,
+   "perturb_fast": {
+    "d_fast": 0.26150989532470703,
+    "d_slow": 0.0507841631770134
+   },
+   "perturb_slow": {
+    "d_fast": 0.04453489929437637,
+    "d_slow": 0.24243329465389252
+   }
+  },
+  {
+   "delta": 1.0,
+   "perturb_fast": {
+    "d_fast": 0.539988100528717,
+    "d_slow": 0.09735005348920822
+   },
+   "perturb_slow": {
+    "d_fast": 0.0896134227514267,
+    "d_slow": 0.48841923475265503
+   }
+  },
+  {
+   "delta": 2.0,
+   "perturb_fast": {
+    "d_fast": 1.1366745233535767,
+    "d_slow": 0.1711888462305069
+   },
+   "perturb_slow": {
+    "d_fast": 0.17043206095695496,
+    "d_slow": 0.9863982200622559
+   }
+  }
+ ],
+ "test_C_subspace_overlap": {
+  "corr_mean": -0.4694511590755852,
+  "cca_first": 0.9999589920043945
+ },
+ "conclusion": "structural_not_tuning"
+}
