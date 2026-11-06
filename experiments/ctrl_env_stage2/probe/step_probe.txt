@@ -1,0 +1,20 @@
+=== 时间精度诊断 ===
+  TEND=0.105   n=8     双精度最小差=1.500e-02  单精度重复点数=0
+  TEND=0.120   n=9     双精度最小差=1.500e-02  单精度重复点数=0
+  TEND=0.200   n=14    双精度最小差=1.500e-02  单精度重复点数=0
+  TEND=0.300   n=21    双精度最小差=1.500e-02  单精度重复点数=0
+  TEND=1.000   n=67    双精度最小差=1.500e-02  单精度重复点数=0
+  TEND=3.360   n=225   双精度最小差=1.500e-02  单精度重复点数=0
+
+=== Input_profiles 块参数 ===
+  读取失败: Simulink 对象名称无效: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles'。
+
+=== 不同步长尝试（TEND=0.105）===
+  TS=0.0150 (n=8): ✅ 成功 27.282 s
+  TS=0.0050 (n=22): ✅ 成功 8.302 s
+  TS=0.0010 (n=106): ✅ 成功 8.592 s
+
+=== 用 sim 的 StartTime/StopTime（不用 Setup 重建）===
+  StartTime=0.000: ✅ 8.423 s
+  StartTime=0.900: ✅ 9.089 s
+  StartTime=1.000: ✅ 8.293 s

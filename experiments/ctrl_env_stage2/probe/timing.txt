@@ -1,0 +1,33 @@
+=== Simulink 仿真耗时（单线程）===
+   TEND(s)         点数      首次(s)        后续均值(s)         每步仿真ms
+         5        334     28.882          8.774        26.2709
+        30       2001     10.685          9.724         4.8596
+        60       4001     12.237         11.227         2.8059
+
+=== 步进式仿真（每次仿真 1 个控制周期 = 0.105s）===
+  步 1 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 2 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 3 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 4 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 5 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 6 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 7 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 8 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 9 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 10 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 11 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 12 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 13 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 14 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 15 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 16 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 17 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 18 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 19 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  步 20 失败: 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 的参数值在转换为其运行时数据类型之前和之后必须单调递增
+  控制周期: 0.105 s
+  成功步数: 0 / 20
+  每步耗时: mean=NaN s, median=NaN s, min=NaN, max=NaN
+  -> 若每步耗时 > 控制周期，无法实时
+  判断: ❌ 不满足实时（NaN > 0.105 s）
+        MPC 需降低控制频率或使用更快的代理模型

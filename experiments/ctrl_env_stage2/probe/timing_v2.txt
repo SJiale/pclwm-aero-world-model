@@ -1,0 +1,29 @@
+=== 单步诊断 ===
+  t_small: n=8, [0.000000, 0.105000]
+  单调性: 1
+  相邻差: [0.015 0.015 0.015 0.015 0.015 0.015 0.015]
+  加前导点后: n=9, 单调=1
+
+=== 单步仿真尝试 ===
+  A: 8 点 (0:0.015:0.105)       ❌ 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 
+  B: 9 点 (0:0.015:0.12)        ❌ 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 
+  C: 首步 0.2s                   ❌ 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 
+  D: 首步 0.3s                   ❌ 'AGTF30SysDyn_PExPIn/System Inputs/Model Source24/Input_profiles' 中 InputValues 
+
+=== 重仿整段耗时（MPC 候选评估场景）===
+     TEND(s)         点数        耗时(s)           实时倍率 horizon32估算(s)
+        3.36        225        7.917          0.42x          7.917
+       10.00        667        8.733          1.15x          2.934
+       30.00       2001        9.030          3.32x          1.011
+       60.00       4001       10.658          5.63x          0.597
+
+=== MPC 计算预算分析 ===
+  假设: MPC horizon=32 (3.36s), 控制周期=0.105s
+  候选数                        单候选耗时(s)         总耗时(s)
+  1                             0.622          0.622
+  8                             0.622          4.978
+  32                            0.622         19.911
+  128                           0.622         79.644
+
+  结论: Simulink 直接做 MPC 候选评估不可行
+        必须用神经代理模型（GRU/PC-RSSM）

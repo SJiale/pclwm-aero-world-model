@@ -1,0 +1,301 @@
+{
+ "rows": [
+  {
+   "rid": "A1_step_e1",
+   "group": "A",
+   "pla_min": 42.0,
+   "pla_max": 72.0,
+   "pla_delta": 30.0,
+   "alt_min": 0.0,
+   "alt_max": 0.0,
+   "mn_min": 0.0,
+   "mn_max": 0.0
+  },
+  {
+   "rid": "A2_aprbs_e1",
+   "group": "A",
+   "pla_min": 42.46161922,
+   "pla_max": 72.85510364,
+   "pla_delta": 30.393484419999993,
+   "alt_min": 0.0,
+   "alt_max": 0.0,
+   "mn_min": 0.0,
+   "mn_max": 0.0
+  },
+  {
+   "rid": "A3_msin_e1",
+   "group": "A",
+   "pla_min": 40.87315264,
+   "pla_max": 68.87592736,
+   "pla_delta": 28.002774720000005,
+   "alt_min": 0.0,
+   "alt_max": 0.0,
+   "mn_min": 0.0,
+   "mn_max": 0.0
+  },
+  {
+   "rid": "A4_ramp_e1",
+   "group": "A",
+   "pla_min": 40.0,
+   "pla_max": 78.0,
+   "pla_delta": 38.0,
+   "alt_min": 0.0,
+   "alt_max": 0.0,
+   "mn_min": 0.0,
+   "mn_max": 0.0
+  },
+  {
+   "rid": "A5_step_e2",
+   "group": "A",
+   "pla_min": 42.0,
+   "pla_max": 72.0,
+   "pla_delta": 30.0,
+   "alt_min": 20000.0,
+   "alt_max": 20000.0,
+   "mn_min": 0.5,
+   "mn_max": 0.5
+  },
+  {
+   "rid": "A6_aprbs_e2",
+   "group": "A",
+   "pla_min": 43.49520125,
+   "pla_max": 74.09793609,
+   "pla_delta": 30.602734840000004,
+   "alt_min": 20000.0,
+   "alt_max": 20000.0,
+   "mn_min": 0.5,
+   "mn_max": 0.5
+  },
+  {
+   "rid": "A7_msin_e2",
+   "group": "A",
+   "pla_min": 42.11792949,
+   "pla_max": 68.20575733,
+   "pla_delta": 26.087827839999996,
+   "alt_min": 20000.0,
+   "alt_max": 20000.0,
+   "mn_min": 0.5,
+   "mn_max": 0.5
+  },
+  {
+   "rid": "A8_ramp_e2",
+   "group": "A",
+   "pla_min": 40.0,
+   "pla_max": 78.0,
+   "pla_delta": 38.0,
+   "alt_min": 20000.0,
+   "alt_max": 20000.0,
+   "mn_min": 0.5,
+   "mn_max": 0.5
+  },
+  {
+   "rid": "A9_step_e3",
+   "group": "A",
+   "pla_min": 42.0,
+   "pla_max": 72.0,
+   "pla_delta": 30.0,
+   "alt_min": 10000.0,
+   "alt_max": 10000.0,
+   "mn_min": 0.3,
+   "mn_max": 0.3
+  },
+  {
+   "rid": "A10_aprbs_e3",
+   "group": "A",
+   "pla_min": 42.07264084,
+   "pla_max": 74.70714525,
+   "pla_delta": 32.63450441,
+   "alt_min": 10000.0,
+   "alt_max": 10000.0,
+   "mn_min": 0.3,
+   "mn_max": 0.3
+  },
+  {
+   "rid": "A11_msin_e3",
+   "group": "A",
+   "pla_min": 42.82610194,
+   "pla_max": 67.37339889,
+   "pla_delta": 24.547296950000003,
+   "alt_min": 10000.0,
+   "alt_max": 10000.0,
+   "mn_min": 0.3,
+   "mn_max": 0.3
+  },
+  {
+   "rid": "A12_ramp_e3",
+   "group": "A",
+   "pla_min": 40.0,
+   "pla_max": 78.0,
+   "pla_delta": 38.0,
+   "alt_min": 10000.0,
+   "alt_max": 10000.0,
+   "mn_min": 0.3,
+   "mn_max": 0.3
+  },
+  {
+   "rid": "B1_alt_slow",
+   "group": "B",
+   "pla_min": 55.0,
+   "pla_max": 55.0,
+   "pla_delta": 0.0,
+   "alt_min": 0.0,
+   "alt_max": 20000.0,
+   "mn_min": 0.0,
+   "mn_max": 0.0
+  },
+  {
+   "rid": "B2_alt_fast",
+   "group": "B",
+   "pla_min": 55.0,
+   "pla_max": 55.0,
+   "pla_delta": 0.0,
+   "alt_min": 0.0,
+   "alt_max": 25000.0,
+   "mn_min": 0.0,
+   "mn_max": 0.0
+  },
+  {
+   "rid": "B3_mn_slow",
+   "group": "B",
+   "pla_min": 55.0,
+   "pla_max": 55.0,
+   "pla_delta": 0.0,
+   "alt_min": 0.0,
+   "alt_max": 0.0,
+   "mn_min": 0.0,
+   "mn_max": 0.7
+  },
+  {
+   "rid": "B4_mn_fast",
+   "group": "B",
+   "pla_min": 55.0,
+   "pla_max": 55.0,
+   "pla_delta": 0.0,
+   "alt_min": 0.0,
+   "alt_max": 0.0,
+   "mn_min": 0.0,
+   "mn_max": 0.75
+  },
+  {
+   "rid": "B5_flight_climb",
+   "group": "B",
+   "pla_min": 55.0,
+   "pla_max": 55.0,
+   "pla_delta": 0.0,
+   "alt_min": 0.0,
+   "alt_max": 18000.0,
+   "mn_min": 0.0,
+   "mn_max": 0.55
+  },
+  {
+   "rid": "B6_flight_desc",
+   "group": "B",
+   "pla_min": 55.0,
+   "pla_max": 55.0,
+   "pla_delta": 0.0,
+   "alt_min": 0.0,
+   "alt_max": 20000.0,
+   "mn_min": 0.0,
+   "mn_max": 0.6
+  },
+  {
+   "rid": "C1_seq_pla_first",
+   "group": "C",
+   "pla_min": 50.0,
+   "pla_max": 74.0,
+   "pla_delta": 24.0,
+   "alt_min": 0.0,
+   "alt_max": 15992.0,
+   "mn_min": 0.0,
+   "mn_max": 0.5
+  },
+  {
+   "rid": "C2_seq_env_first",
+   "group": "C",
+   "pla_min": 45.0,
+   "pla_max": 55.0,
+   "pla_delta": 10.0,
+   "alt_min": 0.0,
+   "alt_max": 17991.81818,
+   "mn_min": 0.0,
+   "mn_max": 0.54975
+  },
+  {
+   "rid": "C3_opposite",
+   "group": "C",
+   "pla_min": 52.0,
+   "pla_max": 80.0,
+   "pla_delta": 28.0,
+   "alt_min": 0.0,
+   "alt_max": 22000.0,
+   "mn_min": 0.15,
+   "mn_max": 0.68
+  },
+  {
+   "rid": "C4_alternate",
+   "group": "C",
+   "pla_min": 46.0,
+   "pla_max": 72.0,
+   "pla_delta": 26.0,
+   "alt_min": 0.0,
+   "alt_max": 13993.63636,
+   "mn_min": 0.0,
+   "mn_max": 0.42
+  },
+  {
+   "rid": "C5_partial_overlap",
+   "group": "C",
+   "pla_min": 55.0,
+   "pla_max": 78.0,
+   "pla_delta": 23.0,
+   "alt_min": 0.0,
+   "alt_max": 18000.0,
+   "mn_min": 0.0,
+   "mn_max": 0.6
+  },
+  {
+   "rid": "C6_mn_step",
+   "group": "C",
+   "pla_min": 52.0,
+   "pla_max": 74.0,
+   "pla_delta": 22.0,
+   "alt_min": 8000.0,
+   "alt_max": 18000.0,
+   "mn_min": 0.2,
+   "mn_max": 0.55
+  },
+  {
+   "rid": "C7_threeway",
+   "group": "C",
+   "pla_min": 50.0,
+   "pla_max": 76.0,
+   "pla_delta": 26.0,
+   "alt_min": 0.0,
+   "alt_max": 12000.0,
+   "mn_min": 0.0,
+   "mn_max": 0.62
+  },
+  {
+   "rid": "C8_multiphase",
+   "group": "C",
+   "pla_min": 40.0,
+   "pla_max": 75.0,
+   "pla_delta": 35.0,
+   "alt_min": 0.0,
+   "alt_max": 15000.0,
+   "mn_min": 0.0,
+   "mn_max": 0.55
+  }
+ ],
+ "summary": {
+  "n_traj": 26,
+  "pla_range": [
+   40.0,
+   80.0
+  ],
+  "a_group_pla_delta": [
+   24.547296950000003,
+   38.0
+  ]
+ }
+}
