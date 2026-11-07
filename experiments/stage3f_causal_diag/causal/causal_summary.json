@@ -1,0 +1,23 @@
+{
+ "A_predicted_overshoot": 17,
+ "A_first_k": 14,
+ "A_first_t": 1.365,
+ "A_n_agg_after_pred": 7,
+ "D_pla_decrease_steps": 27,
+ "D_n_steps": 30,
+ "cfg": {
+  "n_short": 8.0,
+  "w_short": 3.0,
+  "H": 32.0,
+  "w_n2": 1.0,
+  "w_du": 1.0,
+  "w_coast": 0.0,
+  "n_cand": 32.0,
+  "n_iter": 6.0,
+  "pla_min": 48.0,
+  "pla_max": 78.0,
+  "dpla_max": 2.0,
+  "n2_ref": 5099.29,
+  "n2_0": 4349.29
+ }
+}

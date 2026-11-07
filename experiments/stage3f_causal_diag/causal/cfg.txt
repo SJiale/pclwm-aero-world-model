@@ -1,0 +1,13 @@
+n_short=8
+w_short=3.00
+H=32
+w_n2=1.00
+w_du=1.00
+w_coast=0.0000
+n_cand=32
+n_iter=6
+pla_min=48.0
+pla_max=78.0
+dpla_max=2.0
+n2_ref=5099.29
+n2_0=4349.29
