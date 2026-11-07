@@ -1,0 +1,8 @@
+{
+ "wv_short_sum": 0.5,
+ "wv_long_sum": 0.5,
+ "k17_pla_prev": 70.861346,
+ "k17_steps_to_gold": 3.6106729999999985,
+ "dpla_max": 2.0,
+ "note": "参考策略未应用 dpla_max 约束，其 MSE 不可直接与 CEM 比较"
+}
