@@ -1,0 +1,50 @@
+=== 诊断 PLA 更新机制 ===
+
+=== Setup 后 base 工作区变量（与 PLA 相关）===
+  MWS                      struct       [1 1]
+
+=== 定位 PLA Lookup ===
+  Model Source24
+    InputValues=T_vec_M, Table=input_array_M
+  Model Source4
+    InputValues=T_vec_M, Table=input_array_M
+  Model Source3
+    InputValues=T_vec_M, Table=input_array_M
+
+=== 所有 Lookup 的变量映射 ===
+  源              InputValues              Table                   
+  ------------------------------------------------------------------
+  Model Source   T_vec_M                  input_array_M           
+  Model Source1  T_vec_M                  input_array_M           
+  Model Source10 T_vec_M                  input_array_M           
+  Model Source11 T_vec_M                  input_array_M           
+  Model Source12 T_vec_M                  input_array_M           
+  Model Source13 T_vec_M                  input_array_M           
+  Model Source14 T_vec_M                  input_array_M           
+  Model Source15 T_vec_M                  input_array_M           
+  Model Source16 T_vec_M                  input_array_M           
+  Model Source17 T_vec_M                  input_array_M           
+  Model Source18 T_vec_M                  input_array_M           
+  Model Source19 T_vec_M                  input_array_M           
+  Model Source2  T_vec_M                  input_array_M           
+  Model Source20 T_vec_M                  input_array_M           
+  Model Source21 T_vec_M                  input_array_M           
+  Model Source22 T_vec_M                  input_array_M           
+  Model Source23 T_vec_M                  input_array_M           
+  Model Source24 T_vec_M                  input_array_M           
+  Model Source25 T_vec_M                  input_array_M           
+  Model Source26 T_vec_M                  input_array_M           
+  Model Source27 T_vec_M                  input_array_M           
+  Model Source3  T_vec_M                  input_array_M           
+  Model Source4  T_vec_M                  input_array_M           
+  Model Source5  T_vec_M                  input_array_M           
+  Model Source6  T_vec_M                  input_array_M           
+  Model Source7  T_vec_M                  input_array_M           
+  Model Source8  T_vec_M                  input_array_M           
+  Model Source9  T_vec_M                  input_array_M           
+
+=== 变量值检查 ===
+  T_vec_M            不存在
+  input_array_M      不存在
+  T_vec              不存在
+  input_array        不存在

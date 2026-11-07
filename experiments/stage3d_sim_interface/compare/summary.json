@@ -1,0 +1,29 @@
+{
+ "native_eec": {
+  "pla_step": [
+   55.0,
+   63.64
+  ],
+  "rise_time_10_90_s": 1.88,
+  "overshoot_rpm": 7.38,
+  "steady_state_rpm": 5103.687990345492,
+  "final_error_rpm": -0.0004823502540602931,
+  "wf_max": 0.90882694623115,
+  "wf_saturated": 0,
+  "t45_max_R": 1919.0778973927936
+ },
+ "gru_mpc_stage1": {
+  "target_rpm": 5099.29,
+  "t_end_s": 6.195,
+  "n2_at_t_end": 5144.43,
+  "error_at_t_end": 45.14000000000033,
+  "peak_rpm": 5243.38,
+  "overshoot_rpm": 144.09000000000015,
+  "rise_90_s": 1.89,
+  "pla_range": [
+   55.7,
+   71.372
+  ],
+  "wf_max": 1.0004
+ }
+}

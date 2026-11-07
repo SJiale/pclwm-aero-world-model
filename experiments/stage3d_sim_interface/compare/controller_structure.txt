@@ -1,0 +1,976 @@
+=== AGTF30e 官方控制律结构 ===
+
+[1] 全模型的 PI / Integrator 块
+  [Integrator] 共 29 个
+    Actuators/FMV/1st order Actuator/Integrator
+    Actuators/VBV/1st order Actuator/Integrator
+    EngineSystem/HP speed integrator/Integrator
+    EngineSystem/LP shaft speed integrator/Integrator
+    EngineSystem/Power System/Electrical Power System/Energy Storage Subsystem/DCDC Variant Subsystem/DCDC Regulator Subsystem/Integrator
+    EngineSystem/Power System/Electrical Power System/Energy Storage Subsystem/DCDC Variant Subsystem/DCDC Regulator Subsystem/PID Controller/Filter/Cont. Filter/Filter
+    EngineSystem/Power System/Electrical Power System/Energy Storage Subsystem/DCDC Variant Subsystem/DCDC Regulator Subsystem/PID Controller/Filter/Cont. Filter Only/Filter
+    EngineSystem/Power System/Electrical Power System/Energy Storage Subsystem/DCDC Variant Subsystem/DCDC Regulator Subsystem/PID Controller/Integrator/Continuous/Integrator
+    EngineSystem/Power System/Electrical Power System/Energy Storage Subsystem/ESD Variant Subsystem/ESD Battery Subsystem/Integrator
+    EngineSystem/Power System/Electrical Power System/Energy Storage Subsystem/ESD Variant Subsystem/ESD Supercapacitor Subsystem/Integrator
+  [DiscreteIntegrator] 共 12 个
+    Control System/Electric Machine Controllers/SOC Controller/Set Point Controller (PI)/Discrete-Time
+Integrator1
+    Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1 Max Controller/Discrete-Time
+Integrator
+    Control System/Wf Controller/Controller/N1cSP Limit Controllers/N3 Max Controller/Discrete-Time
+Integrator
+    Control System/Wf Controller/Controller/N1cSP Limit Controllers/Ps3 Max Controller/Discrete-Time
+Integrator
+    Control System/Wf Controller/Controller/N1cSP Limit Controllers/Ps3 Min Controller/Discrete-Time
+Integrator
+    Control System/Wf Controller/Controller/N1cSP Limit Controllers/T3 Max Controller/Discrete-Time
+Integrator
+    Control System/Wf Controller/Controller/N1cSP Limit Controllers/T4 Max Controller/Discrete-Time
+Integrator
+    Control System/Wf Controller/Controller/N1cSP Limit Controllers/T45 Max Controller/Discrete-Time
+Integrator
+    Control System/Wf Controller/Controller/Nominal Controller/Discrete-Time
+Integrator
+    EngineSystem/Power System/Electrical Power System/Energy Storage Subsystem/DCDC Variant Subsystem/DCDC Regulator Subsystem/PID Controller/Filter/Disc. Forward Euler Filter/Filter
+
+[2] Wf Controller 内部结构
+  子块数: 479
+    [SubSystem] AGTF30SysDyn_PExPIn/Control System/Wf Controller
+    [Inport] Calc
+    [Inport] Sens
+    [Inport] CntrlInput
+    [Inport] Prelookup
+    [Inport] Wfmin
+    [Inport] Wfmax
+    [Inport] phiEPT
+    [Inport] phiBoost
+    [Inport] N1cN
+    [BusSelector] Bus
+Selector
+    [BusSelector] Bus
+Selector1
+    [BusSelector] Bus
+Selector2
+    [SubSystem] Controller
+    [Inport] Controller/Prelookup
+    [Inport] Controller/Alt
+    [Inport] Controller/MN
+    [Inport] Controller/N1c
+    [Inport] Controller/N1
+    [Inport] Controller/N3
+    [Inport] Controller/Ps3
+    [Inport] Controller/T3
+    [Inport] Controller/T4
+    [Inport] Controller/T45
+    [Inport] Controller/NcFanManEn
+    [Inport] Controller/NcFanMan
+    [Inport] Controller/Wfmin
+    [Inport] Controller/Wfmax
+    [Inport] Controller/phiEPT
+    [Inport] Controller/phiBoost
+    [Inport] Controller/N1cN
+    [BusCreator] Controller/Bus
+Creator
+    [From] Controller/From
+    [Goto] Controller/Goto
+    [Mux] Controller/Mux1
+    [Mux] Controller/Mux2
+    [SubSystem] Controller/N1cSP Limit Controllers
+    [Inport] Controller/N1cSP Limit Controllers/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/N1
+    [Inport] Controller/N1cSP Limit Controllers/N3
+    [Inport] Controller/N1cSP Limit Controllers/Ps3
+    [Inport] Controller/N1cSP Limit Controllers/T3
+    [Inport] Controller/N1cSP Limit Controllers/T4
+    [Inport] Controller/N1cSP Limit Controllers/T45
+    [Inport] Controller/N1cSP Limit Controllers/N1cCmd
+    [Mux] Controller/N1cSP Limit Controllers/Mux
+    [SubSystem] Controller/N1cSP Limit Controllers/N1 Max Controller
+    [Inport] Controller/N1cSP Limit Controllers/N1 Max Controller/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/N1 Max Controller/N1
+    [Inport] Controller/N1cSP Limit Controllers/N1 Max Controller/N1cCmd
+    [BusSelector] Controller/N1cSP Limit Controllers/N1 Max Controller/Bus
+Selector
+    [Constant] Controller/N1cSP Limit Controllers/N1 Max Controller/Constant
+    [Constant] Controller/N1cSP Limit Controllers/N1 Max Controller/Constant1
+    [DiscreteIntegrator] Controller/N1cSP Limit Controllers/N1 Max Controller/Discrete-Time
+Integrator
+    [Product] Controller/N1cSP Limit Controllers/N1 Max Controller/Divide2
+    [Product] Controller/N1cSP Limit Controllers/N1 Max Controller/Divide3
+    [From] Controller/N1cSP Limit Controllers/N1 Max Controller/From18
+    [From] Controller/N1cSP Limit Controllers/N1 Max Controller/From19
+    [Gain] Controller/N1cSP Limit Controllers/N1 Max Controller/Gain
+    [Goto] Controller/N1cSP Limit Controllers/N1 Max Controller/Goto
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/N1 Max Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/N1 Max Controller/Kp Interpolation
+Using Prelookup
+    [Sum] Controller/N1cSP Limit Controllers/N1 Max Controller/Sum
+    [Sum] Controller/N1cSP Limit Controllers/N1 Max Controller/Sum1
+    [Sum] Controller/N1cSP Limit Controllers/N1 Max Controller/Sum2
+    [Sum] Controller/N1cSP Limit Controllers/N1 Max Controller/Sum3
+    [Sum] Controller/N1cSP Limit Controllers/N1 Max Controller/Sum4
+    [Outport] Controller/N1cSP Limit Controllers/N1 Max Controller/N1cDmd
+    [Outport] Controller/N1cSP Limit Controllers/N1 Max Controller/N1Max_SP
+    [SubSystem] Controller/N1cSP Limit Controllers/N3 Max Controller
+    [Inport] Controller/N1cSP Limit Controllers/N3 Max Controller/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/N3 Max Controller/N3
+    [Inport] Controller/N1cSP Limit Controllers/N3 Max Controller/N1cCmd
+    [BusSelector] Controller/N1cSP Limit Controllers/N3 Max Controller/Bus
+Selector
+    [Constant] Controller/N1cSP Limit Controllers/N3 Max Controller/Constant
+    [Constant] Controller/N1cSP Limit Controllers/N3 Max Controller/Constant1
+    [DiscreteIntegrator] Controller/N1cSP Limit Controllers/N3 Max Controller/Discrete-Time
+Integrator
+    [Product] Controller/N1cSP Limit Controllers/N3 Max Controller/Divide2
+    [Product] Controller/N1cSP Limit Controllers/N3 Max Controller/Divide3
+    [From] Controller/N1cSP Limit Controllers/N3 Max Controller/From18
+    [From] Controller/N1cSP Limit Controllers/N3 Max Controller/From19
+    [Gain] Controller/N1cSP Limit Controllers/N3 Max Controller/Gain
+    [Goto] Controller/N1cSP Limit Controllers/N3 Max Controller/Goto
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/N3 Max Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/N3 Max Controller/Kp Interpolation
+Using Prelookup
+    [Sum] Controller/N1cSP Limit Controllers/N3 Max Controller/Sum
+    [Sum] Controller/N1cSP Limit Controllers/N3 Max Controller/Sum1
+    [Sum] Controller/N1cSP Limit Controllers/N3 Max Controller/Sum2
+    [Sum] Controller/N1cSP Limit Controllers/N3 Max Controller/Sum3
+    [Sum] Controller/N1cSP Limit Controllers/N3 Max Controller/Sum4
+    [Outport] Controller/N1cSP Limit Controllers/N3 Max Controller/N1cDmd
+    [Outport] Controller/N1cSP Limit Controllers/N3 Max Controller/N3Max_SP
+    [SubSystem] Controller/N1cSP Limit Controllers/Ps3 Max Controller
+    [Inport] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Ps3
+    [Inport] Controller/N1cSP Limit Controllers/Ps3 Max Controller/N1cCmd
+    [BusSelector] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Bus
+Selector
+    [Constant] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Constant
+    [Constant] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Constant1
+    [DiscreteIntegrator] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Discrete-Time
+Integrator
+    [Product] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Divide2
+    [Product] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Divide3
+    [From] Controller/N1cSP Limit Controllers/Ps3 Max Controller/From18
+    [From] Controller/N1cSP Limit Controllers/Ps3 Max Controller/From19
+    [Gain] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Gain
+    [Goto] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Goto
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Kp Interpolation
+Using Prelookup
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Sum
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Sum1
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Sum2
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Sum3
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Sum4
+    [Outport] Controller/N1cSP Limit Controllers/Ps3 Max Controller/N1cDmd
+    [Outport] Controller/N1cSP Limit Controllers/Ps3 Max Controller/Ps3Max_SP
+    [SubSystem] Controller/N1cSP Limit Controllers/Ps3 Min Controller
+    [Inport] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Ps3
+    [Inport] Controller/N1cSP Limit Controllers/Ps3 Min Controller/N1cCmd
+    [BusSelector] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Bus
+Selector
+    [Constant] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Constant
+    [DiscreteIntegrator] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Discrete-Time
+Integrator
+    [Product] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Divide2
+    [Product] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Divide3
+    [From] Controller/N1cSP Limit Controllers/Ps3 Min Controller/From18
+    [From] Controller/N1cSP Limit Controllers/Ps3 Min Controller/From19
+    [Gain] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Gain
+    [Goto] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Goto
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Kp Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Ps3minSP Interpolation
+Using Prelookup
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Sum
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Sum1
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Sum2
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Sum3
+    [Sum] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Sum4
+    [Outport] Controller/N1cSP Limit Controllers/Ps3 Min Controller/N1cDmd
+    [Outport] Controller/N1cSP Limit Controllers/Ps3 Min Controller/Ps3Min_SP
+    [SubSystem] Controller/N1cSP Limit Controllers/T3 Max Controller
+    [Inport] Controller/N1cSP Limit Controllers/T3 Max Controller/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/T3 Max Controller/T3
+    [Inport] Controller/N1cSP Limit Controllers/T3 Max Controller/N1cCmd
+    [BusSelector] Controller/N1cSP Limit Controllers/T3 Max Controller/Bus
+Selector
+    [Constant] Controller/N1cSP Limit Controllers/T3 Max Controller/Constant
+    [Constant] Controller/N1cSP Limit Controllers/T3 Max Controller/Constant1
+    [DiscreteIntegrator] Controller/N1cSP Limit Controllers/T3 Max Controller/Discrete-Time
+Integrator
+    [Product] Controller/N1cSP Limit Controllers/T3 Max Controller/Divide2
+    [Product] Controller/N1cSP Limit Controllers/T3 Max Controller/Divide3
+    [From] Controller/N1cSP Limit Controllers/T3 Max Controller/From18
+    [From] Controller/N1cSP Limit Controllers/T3 Max Controller/From19
+    [Gain] Controller/N1cSP Limit Controllers/T3 Max Controller/Gain
+    [Goto] Controller/N1cSP Limit Controllers/T3 Max Controller/Goto
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/T3 Max Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/T3 Max Controller/Kp Interpolation
+Using Prelookup
+    [Sum] Controller/N1cSP Limit Controllers/T3 Max Controller/Sum
+    [Sum] Controller/N1cSP Limit Controllers/T3 Max Controller/Sum1
+    [Sum] Controller/N1cSP Limit Controllers/T3 Max Controller/Sum2
+    [Sum] Controller/N1cSP Limit Controllers/T3 Max Controller/Sum3
+    [Sum] Controller/N1cSP Limit Controllers/T3 Max Controller/Sum4
+    [Outport] Controller/N1cSP Limit Controllers/T3 Max Controller/N1cDmd
+    [Outport] Controller/N1cSP Limit Controllers/T3 Max Controller/T3Max_SP
+    [SubSystem] Controller/N1cSP Limit Controllers/T4 Max Controller
+    [Inport] Controller/N1cSP Limit Controllers/T4 Max Controller/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/T4 Max Controller/T4
+    [Inport] Controller/N1cSP Limit Controllers/T4 Max Controller/N1cCmd
+    [BusSelector] Controller/N1cSP Limit Controllers/T4 Max Controller/Bus
+Selector
+    [Constant] Controller/N1cSP Limit Controllers/T4 Max Controller/Constant
+    [Constant] Controller/N1cSP Limit Controllers/T4 Max Controller/Constant7
+    [DiscreteIntegrator] Controller/N1cSP Limit Controllers/T4 Max Controller/Discrete-Time
+Integrator
+    [Product] Controller/N1cSP Limit Controllers/T4 Max Controller/Divide2
+    [Product] Controller/N1cSP Limit Controllers/T4 Max Controller/Divide3
+    [From] Controller/N1cSP Limit Controllers/T4 Max Controller/From18
+    [From] Controller/N1cSP Limit Controllers/T4 Max Controller/From19
+    [Gain] Controller/N1cSP Limit Controllers/T4 Max Controller/Gain
+    [Goto] Controller/N1cSP Limit Controllers/T4 Max Controller/Goto
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/T4 Max Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/T4 Max Controller/Kp Interpolation
+Using Prelookup
+    [Sum] Controller/N1cSP Limit Controllers/T4 Max Controller/Sum
+    [Sum] Controller/N1cSP Limit Controllers/T4 Max Controller/Sum1
+    [Sum] Controller/N1cSP Limit Controllers/T4 Max Controller/Sum2
+    [Sum] Controller/N1cSP Limit Controllers/T4 Max Controller/Sum3
+    [Sum] Controller/N1cSP Limit Controllers/T4 Max Controller/Sum4
+    [Outport] Controller/N1cSP Limit Controllers/T4 Max Controller/N1cDmd
+    [Outport] Controller/N1cSP Limit Controllers/T4 Max Controller/T4Max_SP
+    [SubSystem] Controller/N1cSP Limit Controllers/T45 Max Controller
+    [Inport] Controller/N1cSP Limit Controllers/T45 Max Controller/Prelookup
+    [Inport] Controller/N1cSP Limit Controllers/T45 Max Controller/T45
+    [Inport] Controller/N1cSP Limit Controllers/T45 Max Controller/N1cCmd
+    [BusSelector] Controller/N1cSP Limit Controllers/T45 Max Controller/Bus
+Selector
+    [Constant] Controller/N1cSP Limit Controllers/T45 Max Controller/Constant
+    [DiscreteIntegrator] Controller/N1cSP Limit Controllers/T45 Max Controller/Discrete-Time
+Integrator
+    [Product] Controller/N1cSP Limit Controllers/T45 Max Controller/Divide2
+    [Product] Controller/N1cSP Limit Controllers/T45 Max Controller/Divide3
+    [From] Controller/N1cSP Limit Controllers/T45 Max Controller/From18
+    [From] Controller/N1cSP Limit Controllers/T45 Max Controller/From19
+    [Gain] Controller/N1cSP Limit Controllers/T45 Max Controller/Gain
+    [Goto] Controller/N1cSP Limit Controllers/T45 Max Controller/Goto
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/T45 Max Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/T45 Max Controller/Kp Interpolation
+Using Prelookup
+    [Sum] Controller/N1cSP Limit Controllers/T45 Max Controller/Sum
+    [Sum] Controller/N1cSP Limit Controllers/T45 Max Controller/Sum1
+    [Sum] Controller/N1cSP Limit Controllers/T45 Max Controller/Sum2
+    [Sum] Controller/N1cSP Limit Controllers/T45 Max Controller/Sum3
+    [Sum] Controller/N1cSP Limit Controllers/T45 Max Controller/Sum4
+    [Interpolation_n-D] Controller/N1cSP Limit Controllers/T45 Max Controller/T45 Max Set-Point Interpolation
+Using Prelookup
+    [Outport] Controller/N1cSP Limit Controllers/T45 Max Controller/N1cDmd
+    [Outport] Controller/N1cSP Limit Controllers/T45 Max Controller/T4Max_SP
+    [Outport] Controller/N1cSP Limit Controllers/N1cSP T3 Max
+    [Outport] Controller/N1cSP Limit Controllers/N1cSP T4 Max
+    [Outport] Controller/N1cSP Limit Controllers/N1cSP T45 Max
+    [Outport] Controller/N1cSP Limit Controllers/N1cSP N1 Max
+    [Outport] Controller/N1cSP Limit Controllers/N1cSP N3 Max
+    [Outport] Controller/N1cSP Limit Controllers/N1cSP Ps3 Max
+    [Outport] Controller/N1cSP Limit Controllers/N1cSP Ps3 Min
+    [Outport] Controller/N1cSP Limit Controllers/SPs
+    [SubSystem] Controller/N1cSP Limit Select
+    [Inport] Controller/N1cSP Limit Select/N1cSPReq
+    [Inport] Controller/N1cSP Limit Select/Limits
+    [SubSystem] Controller/N1cSP Limit Select/Limit Selection
+    [Inport] Controller/N1cSP Limit Select/Limit Selection/Request Value
+    [Inport] Controller/N1cSP Limit Select/Limit Selection/Limit Values
+    [Constant] Controller/N1cSP Limit Select/Limit Selection/Constant
+    [Constant] Controller/N1cSP Limit Select/Limit Selection/Constant1
+    [SubSystem] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder
+    [Inport] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/Req
+    [Inport] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/Limit_Vec
+    [Inport] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/SelectVec
+    [Inport] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/EnableLimits
+    [Demux] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/ Demux 
+    [S-Function] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/ SFunction 
+    [Terminator] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/ Terminator 
+    [Outport] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/Dmd
+    [Outport] Controller/N1cSP Limit Select/Limit Selection/Min//Max Ladder/ActiveLimit
+    [Outport] Controller/N1cSP Limit Select/Limit Selection/Demand Value
+    [Outport] Controller/N1cSP Limit Select/Limit Selection/ActiveLimit
+    [Outport] Controller/N1cSP Limit Select/N1cSPdmd
+    [Outport] Controller/N1cSP Limit Select/RegNum
+    [SubSystem] Controller/Nominal Controller
+    [Inport] Controller/Nominal Controller/Prelookup
+    [Inport] Controller/Nominal Controller/N1cManEn
+    [Inport] Controller/Nominal Controller/N1cMan
+    [Inport] Controller/Nominal Controller/N1cSP
+    [Inport] Controller/Nominal Controller/N1c
+    [Inport] Controller/Nominal Controller/Wfcmd
+    [BusSelector] Controller/Nominal Controller/Bus
+Selector
+    [Constant] Controller/Nominal Controller/Constant
+    [DiscreteIntegrator] Controller/Nominal Controller/Discrete-Time
+Integrator
+    [Product] Controller/Nominal Controller/Divide2
+    [Product] Controller/Nominal Controller/Divide3
+    [From] Controller/Nominal Controller/From18
+    [From] Controller/Nominal Controller/From19
+    [Gain] Controller/Nominal Controller/Gain
+    [Goto] Controller/Nominal Controller/Goto
+    [Interpolation_n-D] Controller/Nominal Controller/Ki Interpolation
+Using Prelookup
+    [Interpolation_n-D] Controller/Nominal Controller/Kp Interpolation
+Using Prelookup
+    [Sum] Controller/Nominal Controller/Sum
+    [Sum] Controller/Nominal Controller/Sum1
+    [Sum] Controller/Nominal Controller/Sum2
+    [Sum] Controller/Nominal Controller/Sum3
+    [Sum] Controller/Nominal Controller/Sum4
+    [Switch] Controller/Nominal Controller/Switch
+    [Outport] Controller/Nominal Controller/Wfdmd
+    [Outport] Controller/Nominal Controller/N1cErr
+    [SubSystem] Controller/Nominal Set-Point Determination
+    [Inport] Controller/Nominal Set-Point Determination/Prelookup
+    [BusSelector] Controller/Nominal Set-Point Determination/Bus
+Selector
+    [Interpolation_n-D] Controller/Nominal Set-Point Determination/NcFanSP Interpolation
+Using Prelookup
+    [Outport] Controller/Nominal Set-Point Determination/N1cSP
+    [SubSystem] Controller/Set-Points
+    [Inport] Controller/Set-Points/Nominal SP
+    [Inport] Controller/Set-Points/N1cSP Limit SPs
+    [Inport] Controller/Set-Points/Wf Limit SPs
+    [BusCreator] Controller/Set-Points/Bus
+Creator
+    [BusCreator] Controller/Set-Points/Bus
+Creator1
+    [BusCreator] Controller/Set-Points/Bus
+Creator2
+    [Demux] Controller/Set-Points/Demux
+    [Demux] Controller/Set-Points/Demux1
+    [Outport] Controller/Set-Points/SPs
+    [SubSystem] Controller/Wf Limit Controllers
+    [Inport] Controller/Wf Limit Controllers/Alt
+    [Inport] Controller/Wf Limit Controllers/MN
+    [Inport] Controller/Wf Limit Controllers/Wfmin
+    [Inport] Controller/Wf Limit Controllers/Wfmax
+    [Inport] Controller/Wf Limit Controllers/Wfcmd
+    [Inport] Controller/Wf Limit Controllers/phiEPT
+    [Inport] Controller/Wf Limit Controllers/phiBoost
+    [Inport] Controller/Wf Limit Controllers/N1cN
+    [Inport] Controller/Wf Limit Controllers/ps3
+    [Inport] Controller/Wf Limit Controllers/RegNum
+    [SubSystem] Controller/Wf Limit Controllers/Accel Controller
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/Alt
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/MN
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/N1cN
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/phiEPT
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/phiBoost
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/Wfmax
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/Wfcmd
+    [Inport] Controller/Wf Limit Controllers/Accel Controller/ps3
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant1
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant10
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant11
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant2
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant3
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant4
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant5
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant6
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant7
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant8
+    [Constant] Controller/Wf Limit Controllers/Accel Controller/Constant9
+    [Product] Controller/Wf Limit Controllers/Accel Controller/Divide1
+    [Product] Controller/Wf Limit Controllers/Accel Controller/Divide2
+    [Product] Controller/Wf Limit Controllers/Accel Controller/Divide3
+    [Product] Controller/Wf Limit Controllers/Accel Controller/Divide4
+    [Gain] Controller/Wf Limit Controllers/Accel Controller/Gain2
+    [Math] Controller/Wf Limit Controllers/Accel Controller/Math
+Function
+    [Memory] Controller/Wf Limit Controllers/Accel Controller/Memory
+    [MultiPortSwitch] Controller/Wf Limit Controllers/Accel Controller/Multiport
+Switch
+    [MultiPortSwitch] Controller/Wf Limit Controllers/Accel Controller/Multiport
+Switch1
+    [Lookup_n-D] Controller/Wf Limit Controllers/Accel Controller/RUSched_Boost
+    [Lookup_n-D] Controller/Wf Limit Controllers/Accel Controller/RUSched_PEx
+    [Lookup_n-D] Controller/Wf Limit Controllers/Accel Controller/RUSched_STD
+    [Lookup_n-D] Controller/Wf Limit Controllers/Accel Controller/Settling Time Lookup
+    [Sum] Controller/Wf Limit Controllers/Accel Controller/Sum
+    [Sum] Controller/Wf Limit Controllers/Accel Controller/Sum1
+    [Sum] Controller/Wf Limit Controllers/Accel Controller/Sum2
+    [Switch] Controller/Wf Limit Controllers/Accel Controller/Switch
+    [Switch] Controller/Wf Limit Controllers/Accel Controller/Switch1
+    [Switch] Controller/Wf Limit Controllers/Accel Controller/Switch2
+    [Outport] Controller/Wf Limit Controllers/Accel Controller/Wfdmd
+    [Outport] Controller/Wf Limit Controllers/Accel Controller/WfmaxAccel_SP
+    [SubSystem] Controller/Wf Limit Controllers/Compare
+To Constant
+    [Inport] Controller/Wf Limit Controllers/Compare
+To Constant/u
+    [RelationalOperator] Controller/Wf Limit Controllers/Compare
+To Constant/Compare
+    [Constant] Controller/Wf Limit Controllers/Compare
+To Constant/Constant
+    [Outport] Controller/Wf Limit Controllers/Compare
+To Constant/y
+    [SubSystem] Controller/Wf Limit Controllers/Decel Controller
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/Alt
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/MN
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/N1cN
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/phiEPT
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/phiBoost
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/Wfmin
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/Wf
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/ps3
+    [SubSystem] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant/u
+    [RelationalOperator] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant/Compare
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant/Constant
+    [Outport] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant/y
+    [SubSystem] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant1
+    [Inport] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant1/u
+    [RelationalOperator] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant1/Compare
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant1/Constant
+    [Outport] Controller/Wf Limit Controllers/Decel Controller/Compare
+To Constant1/y
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant1
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant2
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant3
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant4
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant5
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant6
+    [Constant] Controller/Wf Limit Controllers/Decel Controller/Constant7
+    [Product] Controller/Wf Limit Controllers/Decel Controller/Divide1
+    [Product] Controller/Wf Limit Controllers/Decel Controller/Divide2
+    [Product] Controller/Wf Limit Controllers/Decel Controller/Divide3
+    [Product] Controller/Wf Limit Controllers/Decel Controller/Divide4
+    [Gain] Controller/Wf Limit Controllers/Decel Controller/Gain2
+    [Logic] Controller/Wf Limit Controllers/Decel Controller/Logical
+Operator
+    [Math] Controller/Wf Limit Controllers/Decel Controller/Math
+Function
+    [Memory] Controller/Wf Limit Controllers/Decel Controller/Memory
+    [MultiPortSwitch] Controller/Wf Limit Controllers/Decel Controller/Multiport
+Switch
+    [Lookup_n-D] Controller/Wf Limit Controllers/Decel Controller/RUSched_Boost
+    [Lookup_n-D] Controller/Wf Limit Controllers/Decel Controller/RUSched_PEx
+    [Lookup_n-D] Controller/Wf Limit Controllers/Decel Controller/RUSched_STD
+    [Lookup_n-D] Controller/Wf Limit Controllers/Decel Controller/Settling Time Lookup
+    [Sum] Controller/Wf Limit Controllers/Decel Controller/Sum
+    [Sum] Controller/Wf Limit Controllers/Decel Controller/Sum1
+    [Sum] Controller/Wf Limit Controllers/Decel Controller/Sum2
+    [Switch] Controller/Wf Limit Controllers/Decel Controller/Switch
+    [Switch] Controller/Wf Limit Controllers/Decel Controller/Switch1
+    [Switch] Controller/Wf Limit Controllers/Decel Controller/Switch2
+    [Outport] Controller/Wf Limit Controllers/Decel Controller/Wfdmd
+    [Outport] Controller/Wf Limit Controllers/Decel Controller/WfminDecel_SP
+    [Product] Controller/Wf Limit Controllers/Divide
+    [Gain] Controller/Wf Limit Controllers/Gain
+    [Memory] Controller/Wf Limit Controllers/Memory
+    [Mux] Controller/Wf Limit Controllers/Mux
+    [Outport] Controller/Wf Limit Controllers/Wf Accel
+    [Outport] Controller/Wf Limit Controllers/Wf Decel
+    [Outport] Controller/Wf Limit Controllers/Wf Min
+    [Outport] Controller/Wf Limit Controllers/SPs
+    [SubSystem] Controller/Wf Limit Select
+    [Inport] Controller/Wf Limit Select/WfReq
+    [Inport] Controller/Wf Limit Select/Limits
+    [SubSystem] Controller/Wf Limit Select/Limit Selection
+    [Inport] Controller/Wf Limit Select/Limit Selection/Request Value
+    [Inport] Controller/Wf Limit Select/Limit Selection/Limit Values
+    [Constant] Controller/Wf Limit Select/Limit Selection/Constant
+    [Constant] Controller/Wf Limit Select/Limit Selection/Constant1
+    [SubSystem] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder
+    [Inport] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/Req
+    [Inport] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/Limit_Vec
+    [Inport] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/SelectVec
+    [Inport] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/EnableLimits
+    [Demux] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/ Demux 
+    [S-Function] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/ SFunction 
+    [Terminator] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/ Terminator 
+    [Outport] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/Dmd
+    [Outport] Controller/Wf Limit Select/Limit Selection/Min//Max Ladder/ActiveLimit
+    [Outport] Controller/Wf Limit Select/Limit Selection/Demand Value
+    [Outport] Controller/Wf Limit Select/Limit Selection/ActiveLimit
+    [Outport] Controller/Wf Limit Select/Wfdmd
+    [Outport] Controller/Wf Limit Select/RegNum
+    [Outport] Controller/Wfdmd
+    [Outport] Controller/RegNum
+    [Outport] Controller/SPs
+    [Outport] Controller/N1cErr
+    [SubSystem] Corrected Speed Calc
+    [Inport] Corrected Speed Calc/N
+    [Inport] Corrected Speed Calc/T
+    [Product] Corrected Speed Calc/Divide
+    [Gain] Corrected Speed Calc/Gain
+    [Sqrt] Corrected Speed Calc/Sqrt
+    [Outport] Corrected Speed Calc/Nc
+    [From] From
+    [From] From1
+    [From] From10
+    [From] From11
+    [From] From12
+    [From] From13
+    [From] From14
+    [From] From15
+    [From] From16
+    [From] From17
+    [From] From18
+    [From] From19
+    [From] From2
+    [From] From20
+    [From] From21
+    [From] From22
+    [From] From23
+    [From] From24
+    [From] From3
+    [From] From4
+    [From] From5
+    [From] From6
+    [From] From7
+    [From] From8
+    [From] From9
+    [Goto] Goto1
+    [Goto] Goto10
+    [Goto] Goto11
+    [Goto] Goto12
+    [Goto] Goto13
+    [Goto] Goto14
+    [Goto] Goto15
+    [Goto] Goto16
+    [Goto] Goto17
+    [Goto] Goto18
+    [Goto] Goto19
+    [Goto] Goto2
+    [Goto] Goto20
+    [Goto] Goto21
+    [Goto] Goto22
+    [Goto] Goto3
+    [Goto] Goto4
+    [Goto] Goto45
+    [Goto] Goto46
+    [Goto] Goto5
+    [Goto] Goto6
+    [Goto] Goto7
+    [Goto] Goto8
+    [Goto] Goto9
+    [Switch] Switch
+    [Outport] Wf
+    [Outport] RegNum
+    [Outport] SPs
+    [Outport] N1cErr
+
+[3] Control System 顶层子块
+  [Inport] SysIn
+  [Inport] SensorData
+  [Inport] PwrSys
+  [Lookup_n-D] 1-D Lookup
+Table
+  [Lookup_n-D] 1-D Lookup
+Table1
+  [BusCreator] Bus
+Creator
+  [BusCreator] Bus
+Creator1
+  [BusCreator] Bus
+Creator2
+  [BusCreator] Bus
+Creator3
+  [BusCreator] Bus
+Creator4
+  [BusSelector] Bus
+Selector
+  [BusSelector] Bus
+Selector1
+  [BusSelector] Bus
+Selector2
+  [BusSelector] Bus
+Selector3
+  [BusSelector] Bus
+Selector4
+  [BusSelector] Bus
+Selector6
+  [SubSystem] Corrected Speed
+  [Demux] Demux
+  [Demux] Demux1
+  [Demux] Demux2
+  [Product] Divide
+  [SubSystem] Electric Machine Controllers
+  [From] From
+  [From] From1
+  [From] From10
+  [From] From11
+  [From] From12
+  [From] From13
+  [From] From14
+  [From] From15
+  [From] From16
+  [From] From17
+  [From] From18
+  [From] From19
+  [From] From2
+  [From] From20
+  [From] From21
+  [From] From22
+  [From] From23
+  [From] From24
+  [From] From25
+  [From] From26
+  [From] From27
+  [From] From28
+  [From] From29
+  [From] From3
+  [From] From30
+  [From] From31
+  [From] From32
+  [From] From33
+  [From] From34
+  [From] From35
+  [From] From36
+  [From] From37
+  [From] From38
+  [From] From39
+  [From] From4
+  [From] From40
+  [From] From41
+  [From] From42
+  [From] From43
+  [From] From44
+  [From] From45
+  [From] From46
+  [From] From47
+  [From] From48
+  [From] From49
+  [From] From5
+  [From] From50
+  [From] From6
+  [From] From7
+  [From] From72
+  [From] From8
+  [From] From9
+  [Goto] Goto
+  [From] Goto1
+  [Goto] Goto10
+  [Goto] Goto11
+  [Goto] Goto12
+  [Goto] Goto13
+  [Goto] Goto14
+  [Goto] Goto15
+  [From] Goto16
+  [Goto] Goto17
+  [Goto] Goto18
+  [Goto] Goto19
+  [From] Goto2
+  [Goto] Goto20
+  [Goto] Goto21
+  [Goto] Goto22
+  [From] Goto23
+  [Goto] Goto24
+  [Goto] Goto25
+  [Goto] Goto26
+  [Goto] Goto27
+  [From] Goto28
+  [Goto] Goto29
+  [From] Goto3
+  [Goto] Goto30
+  [From] Goto31
+  [From] Goto32
+  [Goto] Goto33
+  [From] Goto34
+  [Goto] Goto35
+  [Goto] Goto36
+  [Goto] Goto37
+  [From] Goto38
+  [Goto] Goto39
+  [Goto] Goto4
+  [Goto] Goto40
+  [Goto] Goto41
+  [Goto] Goto42
+  [Goto] Goto43
+  [Goto] Goto44
+  [Goto] Goto45
+  [Goto] Goto5
+  [Goto] Goto6
+  [Goto] Goto7
+  [Goto] Goto8
+  [Goto] Goto9
+  [Memory] Memory
+  [Memory] Memory1
+  [Memory] Memory2
+  [Memory] Memory3
+  [Memory] Memory4
+  [Memory] Memory5
+  [Saturate] Saturation
+  [Saturate] Saturation1
+  [SubSystem] Scheduling
+  [SubSystem] Spool Power Impact
+  [SubSystem] Steady State EM Power
+  [SubSystem] VAFN Controller
+  [SubSystem] VBV Controller
+  [SubSystem] Wf Controller
+  [Outport] PwrLoad
+  [Outport] Control
+
+[4] 查找 N1cErr / N1c 相关块
+  含 "N1cErr": 12 个
+    [Inport] Control System/Electric Machine Controllers/N1cErr
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/PGB EM Control/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/PGB EM Control/VEATE EM Controllers/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/PGB EM Control/VEATE EM Controllers/TEEM Power/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/PGB EM Control/VEATE EM Controllers/TEEM Power/TEEM Power/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/SOC Controller/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/TEEM Power/k_N1cErrN
+  含 "N1cN": 11 个
+    [Inport] Control System/Electric Machine Controllers/N1cN
+    [Inport] Control System/Electric Machine Controllers/SOC Controller/N1cN
+    [Lookup_n-D] Control System/Scheduling/Steady State EM Power - MaxMin/phiN1cN Lookup
+Table1
+    [Outport] Control System/Scheduling/N1cN
+    [Inport] Control System/Steady State EM Power/N1cN
+    [Lookup_n-D] Control System/Steady State EM Power/phiN1cN Lookup
+Table1
+    [Inport] Control System/Wf Controller/N1cN
+    [Inport] Control System/Wf Controller/Controller/N1cN
+  含 "N1cSP": 14 个
+    [SubSystem] Control System/Wf Controller/Controller/N1cSP Limit Controllers
+    [Outport] Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1cSP T3 Max
+    [Outport] Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1cSP T4 Max
+    [Outport] Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1cSP T45 Max
+    [Outport] Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1cSP N1 Max
+    [Outport] Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1cSP N3 Max
+    [Outport] Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1cSP Ps3 Max
+    [Outport] Control System/Wf Controller/Controller/N1cSP Limit Controllers/N1cSP Ps3 Min
+  含 "N1c": 65 个
+    [Inport] Control System/Electric Machine Controllers/N1cMax
+    [Inport] Control System/Electric Machine Controllers/N1cMin
+    [Inport] Control System/Electric Machine Controllers/N1cErr
+    [Inport] Control System/Electric Machine Controllers/N1cN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/PGB EM Control/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/PGB EM Control/VEATE EM Controllers/N1cErrN
+    [Inport] Control System/Electric Machine Controllers/EM Controllers/PGB EM Control/VEATE EM Controllers/TEEM Power/N1cErrN
+
+[5] setup_Controller.m 中的控制律描述
+  L273: Kp_LL = Nom.Cntrl.Kp(:,:,:,:,:,idxJhpsLow,idxJlpsLow);
+  L274: Kp_LH = Nom.Cntrl.Kp(:,:,:,:,:,idxJhpsLow,idxJlpsHi);
+  L275: Kp_HL = Nom.Cntrl.Kp(:,:,:,:,:,idxJhpsHi,idxJlpsLow);
+  L276: Kp_HH = Nom.Cntrl.Kp(:,:,:,:,:,idxJhpsHi,idxJlpsHi);
+  L277: Kp1 = Kp_LL*(JhpsH-MWS.Shaft.JhpsEff)/(JhpsH-JhpsL) + Kp_HL*(MWS.Shaft.JhpsEff-JhpsL)/(JhpsH-JhpsL);
+  L278: Kp2 = Kp_LH*(JhpsH-MWS.Shaft.JhpsEff)/(JhpsH-JhpsL) + Kp_HH*(MWS.Shaft.JhpsEff-JhpsL)/(JhpsH-JhpsL);
+  L279: MWS.Cntrl.WfCntrl.Nom.Kp_array = Kp1*(JlpsH-MWS.Shaft.JlpsEff)/(JlpsH-JlpsL) + Kp2*(MWS.Shaft.JlpsEff-JlpsL)/(JlpsH-JlpsL);
+  L281: Ki_LL = Nom.Cntrl.Ki(:,:,:,:,:,idxJhpsLow,idxJlpsLow);
+  L282: Ki_LH = Nom.Cntrl.Ki(:,:,:,:,:,idxJhpsLow,idxJlpsHi);
+  L283: Ki_HL = Nom.Cntrl.Ki(:,:,:,:,:,idxJhpsHi,idxJlpsLow);
+  L284: Ki_HH = Nom.Cntrl.Ki(:,:,:,:,:,idxJhpsHi,idxJlpsHi);
+  L285: Ki1 = Ki_LL*(JhpsH-MWS.Shaft.JhpsEff)/(JhpsH-JhpsL) + Ki_HL*(MWS.Shaft.JhpsEff-JhpsL)/(JhpsH-JhpsL);
+  L286: Ki2 = Ki_LH*(JhpsH-MWS.Shaft.JhpsEff)/(JhpsH-JhpsL) + Ki_HH*(MWS.Shaft.JhpsEff-JhpsL)/(JhpsH-JhpsL);
+  L287: MWS.Cntrl.WfCntrl.Nom.Ki_array = Ki1*(JlpsH-MWS.Shaft.JlpsEff)/(JlpsH-JlpsL) + Ki2*(MWS.Shaft.JlpsEff-JlpsL)/(JlpsH-JlpsL);
+  L304: MWS.Cntrl.WfCntrl.Nom.Kiwp = 1296/1.46;
+  L314: clear Kp_LL Kp_LH Kp_HL Kp_HH Ki_LL Ki_LH Ki_HL Ki_HH Kp1 Kp2 Ki1 Ki2
+  L316: Kp_LL = WfLimMax.Cntrl.N1.Kp(:,:,:,:,idxJhpsLow,idxJlpsLow);
+  L317: Kp_LH = WfLimMax.Cntrl.N1.Kp(:,:,:,:,idxJhpsLow,idxJlpsHi);
+  L318: Kp_HL = WfLimMax.Cntrl.N1.Kp(:,:,:,:,idxJhpsHi,idxJlpsLow);
+  L319: Kp_HH = WfLimMax.Cntrl.N1.Kp(:,:,:,:,idxJhpsHi,idxJlpsHi);
+  L320: Kp1 = Kp_LL*(JhpsH-MWS.Shaft.JhpsEff)/(JhpsH-JhpsL) + Kp_HL*(MWS.Shaft.JhpsEff-JhpsL)/(JhpsH-JhpsL);
+  L321: Kp2 = Kp_LH*(JhpsH-MWS.Shaft.JhpsEff)/(JhpsH-JhpsL) + Kp_HH*(MWS.Shaft.JhpsEff-JhpsL)/(JhpsH-JhpsL);
+  L322: MWS.Cntrl.WfCntrl.N1Max.Kp_array = Kp1*(JlpsH-MWS.Shaft.JlpsEff)/(JlpsH-JlpsL) + Kp2*(MWS.Shaft.JlpsEff-JlpsL)/(JlpsH-JlpsL);
+  L324: Ki_LL = WfLimMax.Cntrl.N1.Ki(:,:,:,:,idxJhpsLow,idxJlpsLow);
+  L325: Ki_LH = WfLimMax.Cntrl.N1.Ki(:,:,:,:,idxJhpsLow,idxJlpsHi);
+  L326: Ki_HL = WfLimMax.Cntrl.N1.Ki(:,:,:,:,idxJhpsHi,idxJlpsLow);
+
+[6] PLA -> N1cN 映射链路
+  Control System/Scheduling
+    [Inport] Calc
+    [Inport] CntrlIn
+    [Inport] Sens
+    [Inport] PExAC
+    [PreLookup] Alt Prelookup
+    [BusCreator] Bus
+Creator2
+    [BusSelector] Bus
+Selector3
+    [BusSelector] Bus
+Selector8
+    [Constant] Constant3
+    [Demux] Demux1
+    [Demux] Demux2
+    [Product] Divide1
+    [Interpolation_n-D] FnMax Interpolation
+Using Prelookup
+    [Interpolation_n-D] FnMin Interpolation
+Using Prelookup
+    [From] From
+    [From] From1
+    [From] From10
+    [From] From11
+    [From] From12
+    [From] From13
+    [From] From14
+    [From] From15
+    [From] From16
+    [From] From17
+    [From] From18
+    [From] From19
+    [From] From2
+    [From] From20
+    [From] From21
+    [From] From22
+    [From] From23
+    [From] From24
+    [From] From25
+    [From] From26
+    [From] From27
+    [From] From28
+    [From] From29
+    [From] From3
+    [From] From30
+    [From] From31
+    [From] From32
+    [From] From33
+    [From] From34
+    [From] From35
+    [From] From36
+    [From] From37
+    [From] From38
+    [From] From39
+    [From] From4
+    [From] From40
+    [From] From41
+    [From] From42
+    [From] From43
+    [From] From44
+    [From] From45
+    [From] From46
+    [From] From47
+    [From] From48
+    [From] From49
+    [From] From5
+    [From] From50
+    [From] From51
+    [From] From52
+    [From] From53
+    [From] From54
+    [From] From55
+    [From] From56
+    [From] From57
+    [From] From58
+    [From] From59
+    [From] From6
+    [From] From60
+    [From] From61
+    [From] From62
+    [From] From63
+    [From] From64
+    [From] From65
+    [From] From66
+    [From] From67
+    [From] From68
+    [From] From69
+    [From] From7
+    [From] From70
+    [From] From71
+    [From] From72
+    [From] From73
+    [From] From74
+    [From] From75
+    [From] From76
+    [From] From77
+    [From] From78
+    [From] From79
+    [From] From8
+    [From] From80
+    [From] From81
+    [From] From82
+    [From] From9
+    [From] From90
+    [From] From91
+    [From] From92
+    [From] From93
+    [From] From94
+    [From] From95
+    [Goto] Goto
+    [Goto] Goto1
+    [Goto] Goto10
+    [Goto] Goto11
+    [Goto] Goto12
+    [Goto] Goto13
+    [Goto] Goto14
+    [Goto] Goto15
+    [Goto] Goto16
+    [Goto] Goto17
+    [Goto] Goto18
+    [Goto] Goto19
+    [Goto] Goto2
+    [Goto] Goto20
+    [Goto] Goto21
+    [Goto] Goto22
+    [Goto] Goto23
+    [Goto] Goto24
+    [Goto] Goto25
+    [Goto] Goto26
+    [Goto] Goto27
+    [Goto] Goto28
+    [Goto] Goto29
+    [Goto] Goto3
+    [Goto] Goto30
+    [Goto] Goto31
+    [Goto] Goto32
+    [Goto] Goto33
+    [Goto] Goto36
+    [Goto] Goto37
+    [Goto] Goto38
+    [Goto] Goto4
+    [Goto] Goto5
+    [Goto] Goto6
+    [Goto] Goto7
+    [Goto] Goto8
+    [Goto] Goto9
+    [S-Function] Lookup
+Table
+Dynamic1
+    [PreLookup] MN Prelookup
+    [SubSystem] MaxMin Fuel Flow Calc
+    [Mux] Mux1
+    [Interpolation_n-D] N1cMax Interpolation
+Using Prelookup
+    [Interpolation_n-D] N1cMin Interpolation
+Using Prelookup
+    [SubSystem] Power Level Lookup Determination
+    [PreLookup] PwrInHP Prelookup
+    [PreLookup] PwrInHP Prelookup1
+    [PreLookup] PwrInHPMax Prelookup
+    [PreLookup] PwrInHPMin Prelookup
+    [PreLookup] PwrInLP Prelookup
+    [PreLookup] PwrInLPMax Prelookup
+    [PreLookup] PwrInLPMin Prelookup
+    [Saturate] Saturation
+    [SubSystem] Steady State EM Power - MaxMin
+    [Sum] Sum2
+    [Sum] Sum3
+    [Outport] Prelookup
+    [Outport] N1cMax
+    [Outport] N1cMin
+    [Outport] N1cN
+    [Outport] Wfmin
+    [Outport] Wfmax
+    [Outport] EPTsolver

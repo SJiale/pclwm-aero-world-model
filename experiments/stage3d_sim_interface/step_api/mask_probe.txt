@@ -1,0 +1,35 @@
+=== Model Source Mask 参数探查 ===
+
+=== 各 Model Source 的 Mask 参数 ===
+  源              T_vec_M                      input_array_M               
+  ------------------------------------------------------------------------
+  Model Source   'MWS.In.t_WfMan'             'MWS.In.WfMan'              
+  Model Source1  'MWS.In.t_Alt'               'MWS.In.Alt'                
+  Model Source2  'MWS.In.t_dTamb'             'MWS.In.dTamb'              
+  Model Source3  'MWS.In.t_MN'                'MWS.In.MN'                 
+  Model Source4  'MWS.In.t_PLA'               'MWS.In.PLA'                
+  Model Source5  'MWS.In.t_PwrInLPNomMan'     'MWS.In.PwrInLPNomMan'      
+  Model Source6  'MWS.In.t_VBVMan'            'MWS.In.VBVMan'             
+  Model Source7  'MWS.In.t_VAFNMan'           'MWS.In.VAFNMan'            
+  Model Source8  'MWS.In.t_N1cMan'            'MWS.In.N1cMan'             
+  Model Source9  'MWS.In.t_PwrInHPNomMan'     'MWS.In.PwrInHPNomMan'      
+  Model Source10 'MWS.In.t_PwrInLPOffNomMan... 'MWS.In.PwrInLPOffNomMan'   
+  Model Source11 'MWS.In.t_PwrInHPOffNomMan... 'MWS.In.PwrInHPOffNomMan'   
+  Model Source12 'MWS.In.t_PwrInHPEMOffNomM... 'MWS.In.PwrInHPEMOffNomMan...
+  Model Source13 'MWS.In.t_PwrInHPEMNomMan'   'MWS.In.PwrInHPEMNomMan'    
+  Model Source14 'MWS.In.t_PwrInLPEMOffNomM... 'MWS.In.PwrInLPEMOffNomMan...
+  Model Source15 'MWS.In.t_PwrInLPEMNomMan'   'MWS.In.PwrInLPEMNomMan'    
+  Model Source16 'MWS.In.t_PwrInSEMOffNomMa... 'MWS.In.PwrInSEMOffNomMan'  
+  Model Source17 'MWS.In.t_PwrInSEMNomMan'    'MWS.In.PwrInSEMNomMan'     
+  Model Source18 'MWS.In.t_PwrInREMOffNomMa... 'MWS.In.PwrInREMOffNomMan'  
+  Model Source19 'MWS.In.t_PwrInREMNomMan'    'MWS.In.PwrInREMNomMan'     
+  Model Source20 'MWS.In.t_PwrInCEMOffNomMa... 'MWS.In.PwrInCEMOffNomMan'  
+  Model Source21 'MWS.In.t_PwrInCEMNomMan'    'MWS.In.PwrInCEMNomMan'     
+  Model Source22 'MWS.In.t_PwrInPEMOffNomMa... 'MWS.In.PwrInPEMOffNomMan'  
+  Model Source23 'MWS.In.t_PwrInPEMNomMan'    'MWS.In.PwrInPEMNomMan'     
+  Model Source24 'MWS.In.t_Boost'             'MWS.In.Boost'              
+  Model Source25 'MWS.In.t_EPT'               'MWS.In.EPT'                
+  Model Source26 'MWS.In.t_PExAC'             'MWS.In.PExAC'              
+  Model Source27 'MWS.In.t_Charge'            'MWS.In.Charge'             
+
+=== 按值域定位 PLA ===

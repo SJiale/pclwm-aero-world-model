@@ -1,0 +1,17 @@
+=== PLA 输入机制核查 ===
+
+=== 所有 Model Source 的 From Workspace 变量 ===
+共 28 个 Model Source
+
+
+★ PLA 模块: 
+★ PLA 变量: 
+
+=== MWS.In 结构 ===
+  MWS 不在 base: 函数或变量 'MWS' 无法识别。
+
+=== 模型如何读取 MWS ===
+  MATLAB Function 块: 0 个
+  S-Function 块: 20 个
+
+=== Setup_Simulation 中的 PLA 处理 ===

@@ -1,0 +1,42 @@
+{
+ "n_steps_done": 81,
+ "n_steps_total": 120,
+ "t_end": 8.4,
+ "ref_bug_at_s": 6.3,
+ "stage1": {
+  "ref": 5099.29,
+  "delta": 750.0,
+  "n_start": 4349.57,
+  "n_max": 5243.38,
+  "overshoot": 144.09000000000015,
+  "overshoot_pct": 19.21200000000002,
+  "rise_time_10_90_s": 1.2599999999999998,
+  "final_n2": 5144.43,
+  "final_err": 45.14000000000033,
+  "mae": 198.56600000000006,
+  "pla_range": [
+   55.7,
+   71.372
+  ],
+  "wf_range": [
+   0.6208,
+   1.0004
+  ],
+  "t45_range": [
+   1719.3,
+   1986.6
+  ],
+  "wf_saturated_pts": 0,
+  "reached": false
+ },
+ "stage2": {
+  "note": "参考值设错：实现为 3849（N2_0-500），应为 4599（峰值-500）",
+  "ref_implemented": 3849.29,
+  "ref_expected": 4599.29
+ },
+ "timing": {
+  "opt_median_ms": 96.0,
+  "opt_p95_ms": 113.0,
+  "opt_max_ms": 390.0
+ }
+}

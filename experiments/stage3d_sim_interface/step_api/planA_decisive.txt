@@ -1,0 +1,32 @@
+=== 方案 A 决定性测试 ===
+  直接改内部 Lookup 块（绕过 mask）
+  PLA: 步1-4=55, 步5-12=60
+  期望: 若生效, N2 应上升 ~170 rpm
+
+稳态 N2 = 4349.29
+
+[A1] setBlockParameter 改 Lookup.Table
+  initialize OK
+  setBlockParameter 失败: Invalid value type 'double'. Parameter 'Table' of block 'AGTF30SysDyn_PExPIn/System Inputs/Model Source4/Input_profiles' must have a value type 'char'.
+    1 PLA=55 N2=   4349.29 Wf=0.6180
+    2 PLA=55 N2=   4349.29 Wf=0.6180
+    3 PLA=55 N2=   4349.29 Wf=0.6180
+    4 PLA=55 N2=   4349.29 Wf=0.6180
+    5 PLA=60 N2=   4349.29 Wf=0.6180
+    6 PLA=60 N2=   4349.29 Wf=0.6180
+    7 PLA=60 N2=   4349.29 Wf=0.6180
+    8 PLA=60 N2=   4349.29 Wf=0.6180
+    9 PLA=60 N2=   4349.29 Wf=0.6180
+   10 PLA=60 N2=   4349.29 Wf=0.6180
+   11 PLA=60 N2=   4349.29 Wf=0.6180
+   12 PLA=60 N2=   4349.29 Wf=0.6180
+
+  A1 N2 变化 = -0.00 rpm
+
+[A2] SimulationInput 预设（初始化前改，对照）
+  ❌ A2 失败: 参数 'Table' 的 Lookup block 'Input_profiles' 中的设置无效
+
+=== 结论 ===
+  ❌ A1 无效（N2 变化仅 -0.00 rpm）
+     -> T-MATS Lookup 在 initialize 时固化了数据
+     -> 方案 A 需改成真正的可调输入（如 Inport）

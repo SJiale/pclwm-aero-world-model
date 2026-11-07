@@ -1,0 +1,46 @@
+=== 方案 A 可行性探查 ===
+
+[1] Model Source4 Mask 属性
+  MaskType               = 'T-MATS: Model Source Library Block'
+  MaskNames              <不可读>
+  MaskValues             <不可读>
+  MaskPrompts            <不可读>
+  MaskEnables            <不可读>
+  MaskInitialization     = ''
+  MaskVariables          = 'T_vec_M=@1;input_array_M=@2;'
+  MaskDisplay            = ''
+  MaskCallbacks          <不可读>
+  MaskIconUnits          = 'autoscale'
+
+[2] 内部结构
+  Lookup 块: AGTF30SysDyn_PExPIn/System Inputs/Model Source4/Input_profiles
+    BlockType = Lookup
+    InputValues = T_vec_M
+    Table = input_array_M
+
+[3] Mask 求值属性
+  MaskInitialization = 
+  MaskVariables = T_vec_M=@1;input_array_M=@2;
+
+[4] 模型级 tunable 配置
+  SimulationMode = normal
+  SolverType = Fixed-step
+  SolverName = ode4
+  EnableMultiTasking = on
+
+[5] Model Source 是否含 Inport 变体
+  VariantControl = ''
+  内部块数（所有变体）: 4
+    [SubSystem] Model Source4
+    [Clock] Clock1
+    [Lookup] Input_profiles
+    [Outport] Model_Input
+
+[6] 关键判断
+  PLA 输入链路:
+    Model Source4 (Mask: T_vec_M=MWS.In.t_PLA, input_array_M=MWS.In.PLA)
+      -> Input_profiles (1-D Lookup, InputValues=T_vec_M, Table=input_array_M)
+      -> Bus Creator -> 控制/执行机构
+  Mask 值是【字符串表达式】，指向 base 工作区变量 MWS
+  Simulation 对象在 initialize() 时解析一次并缓存
+  后续 setBlockParameter/mask 更新不会触发重新求值

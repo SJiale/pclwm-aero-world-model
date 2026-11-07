@@ -1,0 +1,74 @@
+=== PLA 信号链完整拓扑 ===
+
+[1] 信号链起点
+  AGTF30SysDyn_PExPIn/System Inputs/Model Source4 (T-MATS Model Source, Lookup)
+    Mask: T_vec_M=MWS.In.t_PLA, input_array_M=MWS.In.PLA
+    -> Bus Creator1, port 1
+
+[2] Bus Creator1 的所有输入
+  输入端口数: 4
+    port 1: [SubSystem] System Inputs/Model Source4
+    port 2: [SubSystem] System Inputs/Model Source24
+    port 3: [SubSystem] System Inputs/Model Source25
+    port 4: [SubSystem] System Inputs/Model Source27
+
+[3] Bus Creator1 输出
+    -> [BusCreator] System Inputs/Bus
+Creator5
+
+[4] 搜索 PLA 的下游消费者
+  名称含 Control 的子系统: 27 个
+    Control System
+    Control System/Electric Machine Controllers
+    Control System/Electric Machine Controllers/EM Controllers
+    Control System/Electric Machine Controllers/EM Controllers/DEM Control
+    Control System/Electric Machine Controllers/EM Controllers/DEM Control/DEM EM Controllers
+    Control System/Electric Machine Controllers/EM Controllers/DEM Control/DEM EM Controllers/EMH Controller
+    Control System/Electric Machine Controllers/EM Controllers/DEM Control/DEM EM Controllers/EML Controller
+    Control System/Electric Machine Controllers/SOC Controller
+    Control System/Electric Machine Controllers/SOC Controller/Set Point Controller (PI)
+    Control System/VAFN Controller
+
+  名称含 EEC/Controller/Cntrl: 29 个
+    [SubSystem] Control System/Electric Machine Controllers
+    [Inport] Control System/Electric Machine Controllers/CntrlInp
+    [SubSystem] Control System/Electric Machine Controllers/EM Controllers
+    [SubSystem] Control System/Electric Machine Controllers/EM Controllers/DEM Control/DEM EM Controllers
+    [SubSystem] Control System/Electric Machine Controllers/EM Controllers/DEM Control/DEM EM Controllers/EMH Controller
+    [SubSystem] Control System/Electric Machine Controllers/EM Controllers/DEM Control/DEM EM Controllers/EML Controller
+    [SubSystem] Control System/Electric Machine Controllers/SOC Controller
+    [SubSystem] Control System/Electric Machine Controllers/SOC Controller/Set Point Controller (PI)
+    [Inport] Control System/Scheduling/CntrlIn
+    [SubSystem] Control System/VAFN Controller
+    [Inport] Control System/VAFN Controller/CntrlInput
+    [SubSystem] Control System/VBV Controller
+    [Inport] Control System/VBV Controller/CntrlInput
+    [SubSystem] Control System/Wf Controller
+    [Inport] Control System/Wf Controller/CntrlInput
+
+[5] 单点替换可行性
+  方案：把 Model Source4 替换为 Inport 或 Signal Builder
+  
+  优点：
+    - 只需替换 1 个模块（28 个 Model Source 中的 1 个）
+    - PLA 信号链路清晰：Lookup -> Bus Creator1 port 1
+    - 下游不需改动
+  
+  风险：
+    - Model Source4 的输出数据类型/采样时间需匹配
+    - T-MATS 内可能有隐藏依赖
+  
+  验证方法：
+    1. 检查 Model Source4 的输出端口数据类型
+    2. 在模型副本中替换为 Inport
+    3. 用 SimulationInput.setExternalInput 驱动
+    4. 验证与旧方法数值一致
+
+[6] Model Source4 输出端口属性
+  端口数: 1
+
+[7] 检查 T-MATS Model Source 的内部实现
+  [SubSystem] Model Source4
+  [Clock] Clock1
+  [Lookup] Input_profiles
+  [Outport] Model_Input
