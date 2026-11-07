@@ -1,0 +1,5 @@
+=== 最小 GRU-MPC 闭环 v3 ===
+  CTRL_DT=0.105s H=32 n_cand=16 n_iter=2 N_CL=12
+
+  稳态 N2=4349.29 rpm
+  xState 存在于 base: 0
