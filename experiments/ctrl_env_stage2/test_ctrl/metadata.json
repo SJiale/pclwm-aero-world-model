@@ -1,0 +1,84 @@
+{
+  "n_traj": 6,
+  "trajs": [
+    {
+      "name": "V1_sin_e1_alt0",
+      "alt": 0,
+      "mn": 0,
+      "desc": "正弦 53-57 deg, 周期 8s, Alt=0 MN=0",
+      "pla_min": 53,
+      "pla_max": 57,
+      "sat_wf_hi": 0,
+      "sat_wf_lo": 0,
+      "sat_pla_hi": 0,
+      "sat_pla_lo": 0
+    },
+    {
+      "name": "V2_tri_e2_alt10k",
+      "alt": 10000,
+      "mn": 0.3,
+      "desc": "三角 52-58 deg, 周期 12s, Alt=10k MN=0.3",
+      "pla_min": 52,
+      "pla_max": 58,
+      "sat_wf_hi": 0,
+      "sat_wf_lo": 0,
+      "sat_pla_hi": 0,
+      "sat_pla_lo": 0
+    },
+    {
+      "name": "V3_rand_e3_alt20k",
+      "alt": 20000,
+      "mn": 0.5,
+      "desc": "随机平滑 48-62 deg (tau=2s), Alt=20k MN=0.5",
+      "pla_min": 48,
+      "pla_max": 62,
+      "sat_wf_hi": 0,
+      "sat_wf_lo": 0,
+      "sat_pla_hi": 0,
+      "sat_pla_lo": 0
+    },
+    {
+      "name": "V4_dstep_alt5k",
+      "alt": 5000,
+      "mn": 0.15,
+      "desc": "双向阶跃 55->54->56->54, Alt=5k MN=0.15",
+      "pla_min": 54,
+      "pla_max": 56,
+      "sat_wf_hi": 0,
+      "sat_wf_lo": 0,
+      "sat_pla_hi": 0,
+      "sat_pla_lo": 0
+    },
+    {
+      "name": "V5_sinw_e2_alt15k",
+      "alt": 15000,
+      "mn": 0.4,
+      "desc": "正弦 51-59 deg, 周期 15s, Alt=15k MN=0.4",
+      "pla_min": 51,
+      "pla_max": 59,
+      "sat_wf_hi": 0,
+      "sat_wf_lo": 0,
+      "sat_pla_hi": 0,
+      "sat_pla_lo": 0
+    },
+    {
+      "name": "V6_mix_alt8k",
+      "alt": 8000,
+      "mn": 0.25,
+      "desc": "混合（正弦周期6s + 阶跃偏移）, Alt=8k MN=0.25",
+      "pla_min": 52,
+      "pla_max": 59,
+      "sat_wf_hi": 0,
+      "sat_wf_lo": 0,
+      "sat_pla_hi": 0,
+      "sat_pla_lo": 0
+    }
+  ],
+  "purpose": "test_ctrl: 控制导向独立验证集，不参与训练/归一化/超参选择",
+  "sampling_s": 0.015,
+  "duration_s": 60,
+  "n_points": 4001,
+  "created": "2026-11-07 14:33:11",
+  "model": "AGTF30SysDyn_PExPIn",
+  "notes": "保留原 EEC；PLA 为绝对指令；记录执行值、限幅信息、N1cErr"
+}
