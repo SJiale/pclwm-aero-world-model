@@ -1,0 +1,22 @@
+{
+ "n_models": 2,
+ "models": {
+  "RSSM-d128": {
+   "params": 1486213,
+   "type": "rssm"
+  },
+  "PC-LWM-E3": {
+   "params": 1203209,
+   "type": "pclwm"
+  }
+ },
+ "n_test_ctrl": 6,
+ "test_ctrl_names": [
+  "V1_sin_e1_alt0",
+  "V2_tri_e2_alt10k",
+  "V3_rand_e3_alt20k",
+  "V4_dstep_alt5k",
+  "V5_sinw_e2_alt15k",
+  "V6_mix_alt8k"
+ ]
+}

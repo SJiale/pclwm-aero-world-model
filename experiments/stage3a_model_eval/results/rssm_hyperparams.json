@@ -1,0 +1,11 @@
+{
+ "c_obs": 5,
+ "c_act": 3,
+ "deter": 128,
+ "stoch": 32,
+ "classes": 32,
+ "hidden": 128,
+ "n_params": 939909,
+ "prefix_stripped": "rssm.",
+ "load_strict": true
+}
